@@ -1,0 +1,230 @@
+﻿-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+
+CREATE SCHEMA HEALINGEARS;
+USE HEARLINGEARS;
+
+
+-- PRODUCT_LIST_TB Table Create SQL
+-- 테이블 생성 SQL - PRODUCT_LIST_TB
+CREATE TABLE PRODUCT_LIST_TB
+(
+    `product_list_no_pk`             INT             NOT NULL    AUTO_INCREMENT COMMENT '제품 종류 번호', 
+    `product_list_name`              VARCHAR(20)     NULL        COMMENT '제품 종류 이름', 
+    `product_list_category`          VARCHAR(20)     NULL        COMMENT '제품 종류 카테고리', 
+    `product_list_line`              VARCHAR(5)      NULL        COMMENT '제품 종류 유무선', 
+    `product_list_type`              VARCHAR(5)      NULL        COMMENT '제품 종류 타입', 
+    `product_list_wearing_type`      VARCHAR(5)      NULL        COMMENT '제품 종류 착용방식', 
+    `product_list_company`           VARCHAR(10)     NULL        COMMENT '제품 종류 회사', 
+    `product_list_information`       VARCHAR(200)    NULL        COMMENT '제품 종류 설명', 
+    `product_list_price`             VARCHAR(5)      NULL        COMMENT '제품 종류 가격', 
+    `product_list_rent_price`        VARCHAR(10)     NULL        COMMENT '제품 종류 이용 가격', 
+    `product_list_release_date`      TIMESTAMP       NULL        COMMENT '제품 종류 출시 날짜', 
+    `product_list_noise_canselling`  CHAR(1)         NULL        COMMENT '제품 종류 노캔 유무', 
+     PRIMARY KEY (product_list_no_pk)
+);
+
+-- 테이블 Comment 설정 SQL - PRODUCT_LIST_TB
+ALTER TABLE PRODUCT_LIST_TB COMMENT '제품 종류';
+
+
+-- USER_TB Table Create SQL
+-- 테이블 생성 SQL - USER_TB
+CREATE TABLE USER_TB
+(
+    `user_no_pk`         INT            NOT NULL    AUTO_INCREMENT COMMENT '유저 번호', 
+    `user_birth`         VARCHAR(6)     NULL        COMMENT '유저 나이', 
+    `user_create_date`   TIMESTAMP      NULL        COMMENT '유저 가입일', 
+    `user_mail`          VARCHAR(50)    NULL        COMMENT '유저 메일', 
+    `user_tel`           VARCHAR(15)    NULL        COMMENT '유저 연락처', 
+    `user_name`          VARCHAR(50)    NULL        COMMENT '유저 이름', 
+    `user_password`      VARCHAR(45)    NULL        COMMENT '유저 패스워드', 
+    `user_sex`           VARCHAR(5)     NULL        COMMENT '유저 성별', 
+    `user_del`           CHAR(1)        NULL        COMMENT '유저 탈퇴', 
+    `user_update_date`   TIMESTAMP      NULL        COMMENT '유저 수정일', 
+    `user_type`          VARCHAR(10)    NULL        COMMENT '유저 타입', 
+    `user_music_genre1`  VARCHAR(10)    NULL        COMMENT '유저 음악장르1', 
+    `user_music_genre2`  VARCHAR(10)    NULL        COMMENT '유저 음악장르2', 
+    `user_music_genre3`  VARCHAR(10)    NULL        COMMENT '유저 음악장르3', 
+     PRIMARY KEY (user_no_pk)
+);
+
+-- 테이블 Comment 설정 SQL - USER_TB
+ALTER TABLE USER_TB COMMENT '사용자';
+
+
+-- PRODUCT_TB Table Create SQL
+-- 테이블 생성 SQL - PRODUCT_TB
+CREATE TABLE PRODUCT_TB
+(
+    `product_no_pk`        INT            NOT NULL    AUTO_INCREMENT COMMENT '제품 번호', 
+    `product_number`       VARCHAR(50)    NULL        COMMENT '제품 일련 번호', 
+    `product_create_date`  TIMESTAMP      NOT NULL    COMMENT '제품 등록 날짜', 
+    `product_color`        VARCHAR(10)    NOT NULL    COMMENT '제품 색상', 
+    `product_state`        VARCHAR(10)    NOT NULL    COMMENT '제품 상태', 
+    `product_list_no_fk`   INT            NOT NULL    COMMENT '제품 목록 번호', 
+     PRIMARY KEY (product_no_pk)
+);
+
+-- 테이블 Comment 설정 SQL - PRODUCT_TB
+ALTER TABLE PRODUCT_TB COMMENT '제품';
+
+-- Foreign Key 설정 SQL - PRODUCT_TB(product_list_no_fk) -> PRODUCT_LIST_TB(product_list_no_pk)
+ALTER TABLE PRODUCT_TB
+    ADD CONSTRAINT FK_PRODUCT_TB_product_list_no_fk_PRODUCT_LIST_TB_product_list_no FOREIGN KEY (product_list_no_fk)
+        REFERENCES PRODUCT_LIST_TB (product_list_no_pk) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- Foreign Key 삭제 SQL - PRODUCT_TB(product_list_no_fk)
+-- ALTER TABLE PRODUCT_TB
+-- DROP FOREIGN KEY FK_PRODUCT_TB_product_list_no_fk_PRODUCT_LIST_TB_product_list_no;
+
+
+-- REVIEW_TB Table Create SQL
+-- 테이블 생성 SQL - REVIEW_TB
+CREATE TABLE REVIEW_TB
+(
+    `review_no_pk`        INT             NOT NULL    AUTO_INCREMENT COMMENT '리뷰 번호', 
+    `review_purpose`      VARCHAR(10)     NULL        COMMENT '리뷰 용도', 
+    `review_sound`        TINYINT         NULL        COMMENT '리뷰 음질', 
+    `review_fit`          TINYINT         NULL        COMMENT '리뷰 착용감', 
+    `review_design`       TINYINT         NULL        COMMENT '리뷰 디자인', 
+    `review_isolating`    TINYINT         NULL        COMMENT '리뷰 차음성', 
+    `review_detail`       VARCHAR(200)    NULL        COMMENT '리뷰 상세', 
+    `review_create_date`  TIMESTAMP       NULL        COMMENT '리뷰 날짜', 
+    `review_update_date`  TIMESTAMP       NULL        COMMENT '리뷰 수정 날짜', 
+     PRIMARY KEY (review_no_pk)
+);
+
+-- 테이블 Comment 설정 SQL - REVIEW_TB
+ALTER TABLE REVIEW_TB COMMENT '제품 리뷰';
+
+
+-- STATION_TB Table Create SQL
+-- 테이블 생성 SQL - STATION_TB
+CREATE TABLE STATION_TB
+(
+    `station_no_pk`           INT             NOT NULL    AUTO_INCREMENT COMMENT '스테이션 번호', 
+    `station_qr`              VARCHAR(200)    NULL        COMMENT '스테이션 QR', 
+    `station_name`            VARCHAR(45)     NULL        COMMENT '스테이션 이름', 
+    `station_latitude`        VARCHAR(10)     NULL        COMMENT '스테이션 위도', 
+    `station_longitude`       VARCHAR(10)     NULL        COMMENT '스테이션 경도', 
+    `station_sido`            VARCHAR(10)     NULL        COMMENT '스테이션 시도', 
+    `station_sigungu`         VARCHAR(10)     NULL        COMMENT '스테이션 시군구', 
+    `station_eubmyendong`     VARCHAR(10)     NULL        COMMENT '스테이션 읍면동', 
+    `station_adress_num`      VARCHAR(10)     NULL        COMMENT '스테이션 지번', 
+    `station_adress_load`     VARCHAR(10)     NULL        COMMENT '스테이션 도로명주소', 
+    `station_server_ip`       VARCHAR(50)     NULL        COMMENT '스테이션 서버 주소', 
+    `station_create_date`     TIMESTAMP       NULL        COMMENT '스테이션 생성일', 
+    `station_image_name`      VARCHAR(70)     NULL        COMMENT '이미지 파일 이름', 
+    `station_image_realname`  VARCHAR(70)     NULL        COMMENT '이미지 파일 원본 이름', 
+    `station_image_path`      VARCHAR(100)    NULL        COMMENT '이미지 파일 경로', 
+     PRIMARY KEY (station_no_pk)
+);
+
+-- 테이블 Comment 설정 SQL - STATION_TB
+ALTER TABLE STATION_TB COMMENT '스테이션';
+
+
+-- RENT_TB Table Create SQL
+-- 테이블 생성 SQL - RENT_TB
+CREATE TABLE RENT_TB
+(
+    `user_no_fk_pk`     INT          NOT NULL    COMMENT '유저 번호', 
+    `product_no_fk_pk`  INT          NOT NULL    COMMENT '제품 번호', 
+    `rent_start_date`   TIMESTAMP    NULL        COMMENT '대여 시작 시간', 
+    `rent_end_date`     TIMESTAMP    NULL        COMMENT '대여 종료 시간', 
+    `rent_price`        INT          NULL        COMMENT '대여 결제 금액', 
+    `rent_did_pay`      CHAR(1)      NULL        COMMENT '대여 결제 완료여부', 
+    `review_no_fk`      INT          NULL        COMMENT '리뷰 번호', 
+     PRIMARY KEY (user_no_fk_pk, product_no_fk_pk)
+);
+
+-- 테이블 Comment 설정 SQL - RENT_TB
+ALTER TABLE RENT_TB COMMENT '대여';
+
+-- Foreign Key 설정 SQL - RENT_TB(user_no_fk_pk) -> USER_TB(user_no_pk)
+ALTER TABLE RENT_TB
+    ADD CONSTRAINT FK_RENT_TB_user_no_fk_pk_USER_TB_user_no_pk FOREIGN KEY (user_no_fk_pk)
+        REFERENCES USER_TB (user_no_pk) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- Foreign Key 삭제 SQL - RENT_TB(user_no_fk_pk)
+-- ALTER TABLE RENT_TB
+-- DROP FOREIGN KEY FK_RENT_TB_user_no_fk_pk_USER_TB_user_no_pk;
+
+-- Foreign Key 설정 SQL - RENT_TB(product_no_fk_pk) -> PRODUCT_TB(product_no_pk)
+ALTER TABLE RENT_TB
+    ADD CONSTRAINT FK_RENT_TB_product_no_fk_pk_PRODUCT_TB_product_no_pk FOREIGN KEY (product_no_fk_pk)
+        REFERENCES PRODUCT_TB (product_no_pk) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- Foreign Key 삭제 SQL - RENT_TB(product_no_fk_pk)
+-- ALTER TABLE RENT_TB
+-- DROP FOREIGN KEY FK_RENT_TB_product_no_fk_pk_PRODUCT_TB_product_no_pk;
+
+-- Foreign Key 설정 SQL - RENT_TB(review_no_fk) -> REVIEW_TB(review_no_pk)
+ALTER TABLE RENT_TB
+    ADD CONSTRAINT FK_RENT_TB_review_no_fk_REVIEW_TB_review_no_pk FOREIGN KEY (review_no_fk)
+        REFERENCES REVIEW_TB (review_no_pk) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- Foreign Key 삭제 SQL - RENT_TB(review_no_fk)
+-- ALTER TABLE RENT_TB
+-- DROP FOREIGN KEY FK_RENT_TB_review_no_fk_REVIEW_TB_review_no_pk;
+
+
+-- PRODUCT_LIST_IMAGE_TB Table Create SQL
+-- 테이블 생성 SQL - PRODUCT_LIST_IMAGE_TB
+CREATE TABLE PRODUCT_LIST_IMAGE_TB
+(
+    `product_list_image_no_pk`     INT             NOT NULL    AUTO_INCREMENT COMMENT '이미지 파일 번호', 
+    `product_list_image_name`      VARCHAR(100)    NULL        COMMENT '이미지 파일 이름', 
+    `product_list_image_realname`  VARCHAR(100)    NULL        COMMENT '이미지 파일 원본 이름', 
+    `product_list_image_path`      VARCHAR(200)    NULL        COMMENT '이미지 파일 저장 경로', 
+    `product_list_no_fk`           INT             NULL        COMMENT '제품 종류 번호', 
+     PRIMARY KEY (product_list_image_no_pk)
+);
+
+-- 테이블 Comment 설정 SQL - PRODUCT_LIST_IMAGE_TB
+ALTER TABLE PRODUCT_LIST_IMAGE_TB COMMENT '제품 사진';
+
+-- Foreign Key 설정 SQL - PRODUCT_LIST_IMAGE_TB(product_list_no_fk) -> PRODUCT_LIST_TB(product_list_no_pk)
+ALTER TABLE PRODUCT_LIST_IMAGE_TB
+    ADD CONSTRAINT FK_PRODUCT_LIST_IMAGE_TB_product_list_no_fk_PRODUCT_LIST_TB_prod FOREIGN KEY (product_list_no_fk)
+        REFERENCES PRODUCT_LIST_TB (product_list_no_pk) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- Foreign Key 삭제 SQL - PRODUCT_LIST_IMAGE_TB(product_list_no_fk)
+-- ALTER TABLE PRODUCT_LIST_IMAGE_TB
+-- DROP FOREIGN KEY FK_PRODUCT_LIST_IMAGE_TB_product_list_no_fk_PRODUCT_LIST_TB_prod;
+
+
+-- STATION_DOCK_TB Table Create SQL
+-- 테이블 생성 SQL - STATION_DOCK_TB
+CREATE TABLE STATION_DOCK_TB
+(
+    `station_dock_no_pk`  INT             NOT NULL    AUTO_INCREMENT COMMENT '스테이션 독 번호', 
+    `station_dock_name`   VARCHAR(20)     NOT NULL    COMMENT '스테이션 독 이름', 
+    `station_dock_qr`     VARCHAR(200)    NOT NULL    COMMENT '스테이션 독 QR', 
+    `station_no_fk`       INT             NOT NULL    COMMENT '스테이션 번호', 
+    `product_no_fk`       INT             NULL        COMMENT '제품 번호', 
+     PRIMARY KEY (station_dock_no_pk)
+);
+
+-- 테이블 Comment 설정 SQL - STATION_DOCK_TB
+ALTER TABLE STATION_DOCK_TB COMMENT '스테이션 독';
+
+-- Foreign Key 설정 SQL - STATION_DOCK_TB(product_no_fk) -> PRODUCT_TB(product_no_pk)
+ALTER TABLE STATION_DOCK_TB
+    ADD CONSTRAINT FK_STATION_DOCK_TB_product_no_fk_PRODUCT_TB_product_no_pk FOREIGN KEY (product_no_fk)
+        REFERENCES PRODUCT_TB (product_no_pk) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- Foreign Key 삭제 SQL - STATION_DOCK_TB(product_no_fk)
+-- ALTER TABLE STATION_DOCK_TB
+-- DROP FOREIGN KEY FK_STATION_DOCK_TB_product_no_fk_PRODUCT_TB_product_no_pk;
+
+-- Foreign Key 설정 SQL - STATION_DOCK_TB(station_no_fk) -> STATION_TB(station_no_pk)
+ALTER TABLE STATION_DOCK_TB
+    ADD CONSTRAINT FK_STATION_DOCK_TB_station_no_fk_STATION_TB_station_no_pk FOREIGN KEY (station_no_fk)
+        REFERENCES STATION_TB (station_no_pk) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- Foreign Key 삭제 SQL - STATION_DOCK_TB(station_no_fk)
+-- ALTER TABLE STATION_DOCK_TB
+-- DROP FOREIGN KEY FK_STATION_DOCK_TB_station_no_fk_STATION_TB_station_no_pk;
+
+
