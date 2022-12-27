@@ -1,9 +1,9 @@
 package com.audiosharing.demo.models.entities;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,8 +22,6 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import com.fasterxml.jackson.annotation.JsonRawValue;
-
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,57 +29,68 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter @Setter
+@Getter
+@Setter
 @Entity
-@Table(name = "product_detail")
+@Table(name = "RENT_TB")
 @DynamicUpdate
 @DynamicInsert
-public class ProductDetail implements Serializable {
-	//제품 개별 번호
+public class Rent implements Serializable {
+	// 대여 번호
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT(11)")
-	private Long proDetailId;
-	
-	//제품 개별 일련 번호
-	@Column(nullable = false, length = 50)
-	private String proDetailNumber;
-	
-	//제품 개별 QR 코드
-	@Column(nullable = false, length = 100)
-	private String proDetailQR;
-	
-	//제품 개별 등록 날짜
+	private Long rentNoPk;
+
+	// 대여 시작 시간
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Date proDetailDate;
+	private Date rentStartDate;
 	
-	//제품 예약 확인
-	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0", length = 1)
-	private boolean proDetailRentCheck;
+	// 대여 종료 시간
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = true)
+	private Date rentEndDate;
+
+	// 대여 결제 금액
+	@Column(nullable = true, length = 10)
+	private String rentPrice;
 	
-	//제품 목록 번호
+	// 대여 결제 금액 납부 여부
+	@Column(nullable = false, length = 10)
+	private String rentDidPay;
+	
+	// 유저 번호
 	@ManyToOne
-	@JoinColumn(name="proListId")
-    private ProductList productList;
+	@JoinColumn(name = "userNoPk")
+	private User user;
+
+	// 제품 개별 번호
+	@ManyToOne
+	@JoinColumn(name = "productNoPk")
+	private Product product;
 	
-	//스테이션 번호
+	// 리뷰
 	@OneToOne
-	@JoinColumn(name="stnId")
-	private StationList stationList;
+	@JoinColumn(name="reviewNoPk")
+	private Review review;
+	
+	//asdasdasdasd
+
 	
 	@PrePersist
 	protected void onCreate() {
-		proDetailDate = Timestamp.valueOf(LocalDateTime.now());
+		rentStartDate = Timestamp.valueOf(LocalDateTime.now());
 	}
-	
+
+
+
 	@Builder
-	public ProductDetail(String proDetailNumber, String proDetailQR, ProductList productList,
-			StationList stationList) {
-		this.proDetailNumber = proDetailNumber;
-		this.proDetailQR = proDetailQR;
-		this.productList = productList;
-		this.stationList = stationList;
+	public Rent(String rentPayment, User user, Product product, Review review) {
+
+		this.user = user;
+		this.product = product;
+		this.review = review;
 	}
 
 }

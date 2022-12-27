@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.audiosharing.demo.models.entities.StationList;
+import com.audiosharing.demo.models.entities.Station;
 import com.audiosharing.demo.models.entities.User;
 import com.audiosharing.demo.models.values.UserValue;
 import com.audiosharing.demo.services.UserService;
@@ -91,7 +91,7 @@ public class UserController {
 		if (oUser.isPresent()) {
 			response.put("result", "SUCCESS");
 			response.put("user", oUser);
-			session.setAttribute("id", oUser.get().getUserId());
+			session.setAttribute("id", oUser.get().getUserNoPk());
 			session.setAttribute("LOGIN_MEMBER_ID", "USER");
 		} else {
 			response.put("result", "FAIL");

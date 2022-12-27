@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.audiosharing.demo.models.entities.ProductDetail;
+import com.audiosharing.demo.models.entities.Product;
 import com.audiosharing.demo.models.values.ProductDetailValue;
 import com.audiosharing.demo.repositories.ProductListRepository;
 import com.audiosharing.demo.services.ProductDetailService;
@@ -39,7 +39,7 @@ public class ProductDetailController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<String> findByProDetailId(@PathVariable("id") long id) throws JsonProcessingException {
-		Optional<ProductDetail> oProductDetail = productDetailService.findByProDetailId(id);
+		Optional<Product> oProductDetail = productDetailService.findByProDetailId(id);
 		String result = null;
 		if(oProductDetail.isPresent()) {
 			result = mapper.writeValueAsString(oProductDetail);
@@ -55,7 +55,7 @@ public class ProductDetailController {
 	public ResponseEntity<Map<String, Object>> findByStnIdAllProDetailId(@PathVariable("id") long id) throws JsonProcessingException {
 		Map<String, Object> response = new HashMap<>();
 		
-		List<ProductDetail> LProductDetail = productDetailService.findByStationId(id);
+		List<Product> LProductDetail = productDetailService.findByStationId(id);
 		
 		if(!LProductDetail.isEmpty()) {
 			response.put("result", "SUCCESS");
@@ -71,7 +71,7 @@ public class ProductDetailController {
 	public Map<String, Object> findAll() {
 		Map<String, Object> response = new HashMap<>();
 		
-		List<ProductDetail> LProductDetail = productDetailService.findAll();
+		List<Product> LProductDetail = productDetailService.findAll();
 		if (!LProductDetail.isEmpty()) {
 			response.put("result", "SUCCESS");
 			response.put("productDetail", LProductDetail);
@@ -87,7 +87,7 @@ public class ProductDetailController {
 	public Map<String, Object> save(@RequestBody ProductDetailValue value) {
 		Map<String, Object> response = new HashMap<>();
 
-		ProductDetail productDetail = productDetailService.save(value);
+		Product productDetail = productDetailService.save(value);
 		
 		//productDetail.getProductList()
 		

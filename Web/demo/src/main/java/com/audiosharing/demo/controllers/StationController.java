@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.audiosharing.demo.models.entities.StationList;
+import com.audiosharing.demo.models.entities.Station;
 import com.audiosharing.demo.models.values.StationListValue;
 import com.audiosharing.demo.services.StationListService;
 import com.audiosharing.demo.util.LoginType;
@@ -37,7 +37,7 @@ public class StationController {
 	public Map<String, Object> findByStnId(@PathVariable("id") long id) {
 		Map<String, Object> response = new HashMap<>();
 		
-		Optional<StationList> oStationList = stationListSerivce.findByStnId(id);
+		Optional<Station> oStationList = stationListSerivce.findByStnId(id);
 		if (oStationList.isPresent()) {
 			response.put("result", "SUCCESS");
 			response.put("station", oStationList.get());
@@ -60,7 +60,7 @@ public class StationController {
 	public ResponseEntity<Map<String, Object>> findAll(HttpSession session) {
 		Map<String, Object> response = new HashMap<>();
 		
-		List<StationList> LStationList = stationListSerivce.findAll();
+		List<Station> LStationList = stationListSerivce.findAll();
 		if (!LStationList.isEmpty()) {
 			response.put("result", "SUCCESS");
 			response.put("station", LStationList);
@@ -76,7 +76,7 @@ public class StationController {
 	public Map<String, Object> save(@RequestBody StationListValue value) {
 		Map<String, Object> response = new HashMap<>();
 
-		StationList station = stationListSerivce.save(value);
+		Station station = stationListSerivce.save(value);
 		if (station != null) {
 			response.put("result", "SUCCESS");
 			response.put("user", station);

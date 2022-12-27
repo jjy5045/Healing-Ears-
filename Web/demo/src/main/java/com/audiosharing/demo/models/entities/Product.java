@@ -1,9 +1,9 @@
 package com.audiosharing.demo.models.entities;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +22,8 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonRawValue;
+
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,70 +31,53 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
-@Setter
+@Getter @Setter
 @Entity
-@Table(name = "product_rent")
+@Table(name = "PRODUCT_TB")
 @DynamicUpdate
 @DynamicInsert
-public class ProductRent implements Serializable {
-	// 대여 번호
+public class Product implements Serializable {
+	//제품 개별 번호
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT(11)")
-	private Long rentId;
-
-	// 대여 시작 시간
+	private Long productNoPk;
+	
+	//제품 개별 일련 번호
+	@Column(nullable = false, length = 50)
+	private String productSerialNumber;
+	
+	//제품 개별 등록 날짜
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Date rentStartTime;
+	private Date productCreateDate;
 	
-	// 대여 종료 시간
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable = false)
-	private Date rentEndTime;
-
-	// 대여 결제 금액
-	@Column(nullable = false, length = 10)
-	private String rentPrice;
+	//제품 예약 확인
+	@Column(nullable = false, columnDefinition = "CHAR(10) DEFAULT 'available'")
+	private String productState;
 	
-	// 추가 결제 금액
-	@Column(nullable = false, length = 10)
-	private String rentExtraPrice;
-	
-	// 유저 번호
+	//제품 목록 번호
 	@ManyToOne
-	@JoinColumn(name = "userId")
-	private User user;
-
-	// 제품 개별 번호
-	@ManyToOne
-	@JoinColumn(name = "proDetailId")
-	private ProductDetail productDetail;
+	@JoinColumn(name="productListId")
+    private ProductList productList;
 	
-	// 리뷰
+	//스테이션 번호
 	@OneToOne
-	@JoinColumn(name="reviewId")
-	private Review review;
+	@JoinColumn(name="stnId")
+	private Station stationList;
 	
-	
-
-	
-	/*
 	@PrePersist
 	protected void onCreate() {
-		rentStartTime = Timestamp.valueOf(LocalDateTime.now());
+		productCreateDate = Timestamp.valueOf(LocalDateTime.now());
 	}
-	*/
-
-
-
+	
 	@Builder
-	public ProductRent(String rentStartTime, String rentPayment, String rentAdditionalPayment, 
-			User user, ProductDetail productDetail) {
-
-		this.user = user;
-		this.productDetail = productDetail;
+	public Product(String productNoPk, String productSerialNumber, ProductList productList,
+			Station stationList) {
+		
+		this.productSerialNumber = productSerialNumber;
+		this.productList = productList;
+		this.stationList = stationList;
 	}
 
 }

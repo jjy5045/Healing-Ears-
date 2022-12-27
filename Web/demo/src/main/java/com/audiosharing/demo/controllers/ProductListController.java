@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.audiosharing.demo.models.entities.ProductDetail;
+import com.audiosharing.demo.models.entities.Product;
 import com.audiosharing.demo.models.entities.ProductList;
 import com.audiosharing.demo.models.values.ProductDetailValue;
 import com.audiosharing.demo.models.values.ProductListValue;

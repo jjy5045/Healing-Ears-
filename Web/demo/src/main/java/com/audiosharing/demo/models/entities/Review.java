@@ -26,7 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter @Setter
 @Entity
-@Table(name = "Review")
+@Table(name = "REVIEW_TB")
 @DynamicUpdate
 @DynamicInsert
 public class Review implements Serializable {
@@ -34,13 +34,17 @@ public class Review implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT(11)")
-	private Long reviewId;
+	private Long reviewNoPk;
+	
+	// 리뷰 용도
+	@Column(nullable = false, columnDefinition = "TINYINT(1)", length = 1)
+	private Integer reviewPurpose;
 	
 	// 리뷰 사운드
 	@Column(nullable = false, columnDefinition = "TINYINT(1)", length = 1)
 	private Integer reviewSound;
 	
-	// 리뷰 디자인
+	// 리뷰 착용감
 	@Column(nullable = false, columnDefinition = "TINYINT(1)", length = 1)
 	private Integer reviewFit;
 	
@@ -48,17 +52,25 @@ public class Review implements Serializable {
 	@Column(nullable = false, columnDefinition = "TINYINT(1)", length = 1)
 	private Integer reviewDesign;
 	
+	// 리뷰 차음성
+	@Column(nullable = false, columnDefinition = "TINYINT(1)", length = 1)
+	private Integer reviewIsolating;
+	
 	// 리뷰 상세
 	@Column(nullable = false, length = 200)
-	private String reviewText;
+	private String reviewDetail;
 	
 	// 리뷰 작성 날짜
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Date reviewCreateTimestmap;
+	private Date reviewCreateDate;
+	
 	
 	@PrePersist
 	protected void onCreate() {
-		reviewCreateTimestmap = Timestamp.valueOf(LocalDateTime.now());
+		reviewCreateDate = Timestamp.valueOf(LocalDateTime.now());
 	}
+	
+	
+	
 }

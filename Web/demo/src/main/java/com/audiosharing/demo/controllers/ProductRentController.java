@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.audiosharing.demo.models.values.ProductRentValue;
 import com.audiosharing.demo.services.ProductRentService;
 import com.audiosharing.demo.services.UserService;
-import com.audiosharing.demo.models.entities.ProductDetail;
-import com.audiosharing.demo.models.entities.ProductRent;
+import com.audiosharing.demo.models.entities.Product;
+import com.audiosharing.demo.models.entities.Rent;
 import com.audiosharing.demo.services.ProductDetailService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,7 +32,7 @@ public class ProductRentController {
 	public Map<String, Object> findAll() {
 		Map<String, Object> response = new HashMap<>();
 
-		List<ProductRent> LProductRent = productRentService.findAll();
+		List<Rent> LProductRent = productRentService.findAll();
 		if (!LProductRent.isEmpty()) {
 			response.put("result", "SUCCESS");
 			response.put("productRent", LProductRent);
@@ -48,7 +48,7 @@ public class ProductRentController {
 	public Map<String, Object> Rent(@RequestBody ProductRentValue value) {
 		Map<String, Object> response = new HashMap<>();
 
-		Optional<ProductDetail> oProductDetail = productDetailService
+		Optional<Product> oProductDetail = productDetailService
 				.findByProDetailId(value.getProductDetail().getProDetailId());
 
 		// 제품이 존재하면
@@ -58,7 +58,7 @@ public class ProductRentController {
 				response.put("result", "SUCCESS");
 
 				// 제품 Rent 생성
-				ProductRent productRent = productRentService.save(value);
+				Rent productRent = productRentService.save(value);
 
 				// 제품의 상태를 대여중으로 변경
 				productDetailService.rentBoolean(value.getProductDetail().getProDetailId());
@@ -85,7 +85,7 @@ public class ProductRentController {
 	public Map<String, Object> RentFinish(@RequestBody ProductRentValue value) {
 		Map<String, Object> response = new HashMap<>();
 
-		Optional<ProductDetail> oProductDetail = productDetailService
+		Optional<Product> oProductDetail = productDetailService
 				.findByProDetailId(value.getProductDetail().getProDetailId());
 		// Optional<ProductRent> oProductRent =
 		// productRentService.findByRentId(value.get);

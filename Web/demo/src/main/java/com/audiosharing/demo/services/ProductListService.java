@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.audiosharing.demo.models.entities.ProductDetail;
+import com.audiosharing.demo.models.entities.Product;
 import com.audiosharing.demo.models.entities.ProductList;
 import com.audiosharing.demo.models.entities.User;
 import com.audiosharing.demo.models.values.ProductDetailValue;

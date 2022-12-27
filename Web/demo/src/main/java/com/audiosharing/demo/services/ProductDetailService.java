@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.audiosharing.demo.models.entities.ProductDetail;
+import com.audiosharing.demo.models.entities.Product;
 import com.audiosharing.demo.models.entities.ProductList;
-import com.audiosharing.demo.models.entities.ProductRent;
+import com.audiosharing.demo.models.entities.Rent;
 import com.audiosharing.demo.models.values.ProductDetailValue;
 import com.audiosharing.demo.models.values.ProductListValue;
 import com.audiosharing.demo.models.values.ProductRentValue;
@@ -32,30 +32,30 @@ public class ProductDetailService {
 	
 	
 	@Transactional(readOnly = true)
-	public Optional<ProductDetail> findByProDetailId(Long id) {
+	public Optional<Product> findByProDetailId(Long id) {
 		return productDetailRepository.findByProDetailId(id);
 	}
 	
 	@Transactional
-	public List<ProductDetail> findByStationId(long id) {
-		List<ProductDetail> ProductDetailList = this.productDetailRepository. findByStationListStnId(id);
+	public List<Product> findByStationId(long id) {
+		List<Product> ProductDetailList = this.productDetailRepository. findByStationListStnId(id);
 		return ProductDetailList;
 	}
 	
 
 	
 	@Transactional
-	public List<ProductDetail> findAll() {
-		List<ProductDetail> ProductDetailList = this.productDetailRepository.findAll();
+	public List<Product> findAll() {
+		List<Product> ProductDetailList = this.productDetailRepository.findAll();
 		return ProductDetailList;
 	}
 	
 	
 	@Transactional
 	public void rentBoolean(long id) {
-		Optional<ProductDetail> oProductDetail = productDetailRepository.findByProDetailId(id);
+		Optional<Product> oProductDetail = productDetailRepository.findByProDetailId(id);
 		if(oProductDetail.isPresent()) {
-			ProductDetail productDetail = oProductDetail.get();
+			Product productDetail = oProductDetail.get();
 			
 			if(productDetail.isProDetailRentCheck()==false) {
 				productDetail.setProDetailRentCheck(true);	
@@ -77,9 +77,9 @@ public class ProductDetailService {
 	
 	@Transactional
 	public int patch(long id, ProductDetailValue value) {
-		Optional<ProductDetail> oProductDetail = productDetailRepository.findByProDetailId(id);
+		Optional<Product> oProductDetail = productDetailRepository.findByProDetailId(id);
 		if(oProductDetail.isPresent()) {
-			ProductDetail productDetail = oProductDetail.get();
+			Product productDetail = oProductDetail.get();
 			if(StringUtils.isNotBlank(value.getProDetailNumber()))
 				productDetail.setProDetailNumber(value.getProDetailNumber());
 			if(StringUtils.isNotBlank(value.getProDetailQR()))
@@ -94,7 +94,7 @@ public class ProductDetailService {
 	
 	
 	@Transactional
-	public ProductDetail save(ProductDetailValue value) {
+	public Product save(ProductDetailValue value) {
 		//long a = value.getProListId();
 		//if(productListRepository.findByProListId(value.getProListId())) 
 		/*
@@ -111,7 +111,7 @@ public class ProductDetailService {
 		}
 		*/
 		
-		ProductDetail productDetail = ProductDetail.builder()
+		Product productDetail = Product.builder()
 				.stationList(value.getStationList())
 				.productList(value.getProductList())
 				.proDetailNumber(value.getProDetailNumber())

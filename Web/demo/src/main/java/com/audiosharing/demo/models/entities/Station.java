@@ -30,84 +30,89 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "station_list")
+@Table(name = "STATION_TB")
 @DynamicUpdate
 @DynamicInsert
-public class StationList implements Serializable {
+public class Station implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT(11)")
-	private Long stnId;
+	private Long stationId;
 
+	// 스테이션 이름
 	@Column(nullable = false, length = 45)
-	private String stnName;
+	private String stationName;
+	
+	// 스테이션 QR코드
+	@Column(nullable = false, length = 200)
+	private String stationQr;
 
 	// 구글맵 위도
 	@Column(nullable = false, length = 10)
-	private String stnLatitude;
+	private String stationLatitude;
 
 	// 구글맵 경도
 	@Column(nullable = false, length = 10)
-	private String stnLongitude;
+	private String stationLongitude;
 
 	// 스테이션 주소 시 도
 	@Column(nullable = false, length = 10)
-	private String stnSido;
+	private String stationSido;
 
 	// 스테이션 시 군 구
 	@Column(nullable = false, length = 10)
-	private String stnSigungu;
+	private String stationSigungu;
 
 	// 스테이션 읍 면 동
 	@Column(nullable = false, length = 10)
-	private String stnEubmyendong;
+	private String stationEubmyendong;
 
 	// 스테이션 지번
 	@Column(nullable = false, length = 10)
-	private String stnAdressNum;
+	private String stationAdressNum;
 
 	// 스테이션 도로명 주소
 	@Column(nullable = false, length = 10)
-	private String stnAdressLaod;
+	private String stationAdressLaod;
 
 	// 이미지 파일 이름
 	@Column(nullable = false, length = 70)
-	private String stnImageName;
+	private String stationImageName;
 
 	// 이미지 파일 원본 이름
 	@Column(nullable = false, length = 70)
-	private String stnImageRealname;
+	private String stationImageRealname;
 
 	// 이미지 파일 경로
 	@Column(nullable = false, length = 100)
-	private String stnImagePath;
+	private String stationImagePath;
 
 	// 스테이션 개설일
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Date stnCreateTimestamp;
+	private Date stationCreateDate;
 
 	@PrePersist
 	protected void onCreate() {
-		stnCreateTimestamp = Timestamp.valueOf(LocalDateTime.now());
+		stationCreateDate = Timestamp.valueOf(LocalDateTime.now());
 	}
 
 	@Builder
-	public StationList(String stnName, String stnLatitude, String stnLongitude, 
-			String stnSido, String stnSigungu,
-			String stnEubmyendong, String stnAdressNum, 
-			String stnAdressLaod, String stnImageName,
-			String stnImageRealname, String stnImagePath) {
-		this.stnName = stnName;
-		this.stnLatitude = stnLatitude;
-		this.stnLongitude = stnLongitude;
-		this.stnSido = stnSido;
-		this.stnSigungu = stnSigungu;
-		this.stnEubmyendong = stnEubmyendong;
-		this.stnAdressNum = stnAdressNum;
-		this.stnAdressLaod = stnAdressLaod;
-		this.stnImageName = stnImageName;
-		this.stnImageRealname = stnImageRealname;
-		this.stnImagePath = stnImagePath;		
+	public Station(String stationName, String stationQr, String stationLatitude, String stationLongitude, 
+			String stationSido, String stationSigungu,
+			String stationEubmyendong, String stationAdressNum, 
+			String stationAdressLaod, String stationImageName,
+			String stationImageRealname, String stationImagePath) {
+		this.stationName = stationName;
+		this.stationLatitude = stationLatitude;
+		this.stationLongitude = stationLongitude;
+		this.stationSido = stationSido;
+		this.stationSigungu = stationSigungu;
+		this.stationEubmyendong = stationEubmyendong;
+		this.stationAdressNum = stationAdressNum;
+		this.stationAdressLaod = stationAdressLaod;
+		this.stationImageName = stationImageName;
+		this.stationImageRealname = stationImageRealname;
+		this.stationImagePath = stationImagePath;		
 	}
 }

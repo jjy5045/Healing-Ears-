@@ -6,11 +6,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.audiosharing.demo.models.entities.ProductRent;
+import com.audiosharing.demo.models.entities.Rent;
 
 @Repository
-public interface ProductRentRepository extends JpaRepository<ProductRent, Long>{
-	Optional<ProductRent> findByRentId(Long id);
-	List<ProductRent> findAll();
+public interface ProductRentRepository extends JpaRepository<Rent, Long>{
+	Optional<Rent> findByRentId(Long id);
+	List<Rent> findAll();
 	//Optional<ProductRent> findByRentUseCheckAndProDetailId(int useCheck, ProductDetail proDetailID);
 }

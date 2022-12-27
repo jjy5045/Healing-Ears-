@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.audiosharing.demo.models.entities.StationList;
+import com.audiosharing.demo.models.entities.Station;
 import com.audiosharing.demo.models.entities.User;
 import com.audiosharing.demo.models.values.StationListValue;
 import com.audiosharing.demo.repositories.StationListRepository;
@@ -23,13 +23,13 @@ public class StationListService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Optional<StationList> findByStnId(Long id) {
+	public Optional<Station> findByStnId(Long id) {
 		return stationListRepository.findByStnId(id);
 	}
 	
 	@Transactional
-	public StationList save(StationListValue value) {
-		StationList stationList = StationList.builder()
+	public Station save(StationListValue value) {
+		Station stationList = Station.builder()
 				.stnName(value.getStnName())
 				.stnLatitude(value.getStnLatitude())
 				.stnLongitude(value.getStnLongitude())
@@ -48,7 +48,7 @@ public class StationListService {
 	
 	@Transactional
 	public int delete(long id) {
-		Optional<StationList> oStationList = stationListRepository.findByStnId(id);
+		Optional<Station> oStationList = stationListRepository.findByStnId(id);
 		if(oStationList.isPresent()) {
 			stationListRepository.delete(oStationList.get());
 			return 1;
@@ -57,8 +57,8 @@ public class StationListService {
 	}
 	
 	@Transactional
-	public List<StationList> findAll() {
-		List<StationList> stationList = this.stationListRepository.findAll();
+	public List<Station> findAll() {
+		List<Station> stationList = this.stationListRepository.findAll();
 		return stationList;
 	}
 	

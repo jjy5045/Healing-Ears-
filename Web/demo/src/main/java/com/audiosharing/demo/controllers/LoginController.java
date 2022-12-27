@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.audiosharing.demo.models.entities.StationList;
+import com.audiosharing.demo.models.entities.Station;
 import com.audiosharing.demo.models.entities.User;
 import com.audiosharing.demo.models.values.UserValue;
 import com.audiosharing.demo.services.UserService;
@@ -67,7 +67,7 @@ public class LoginController {
 			
 			// 세션에 로그인 회원 정보 보관 
 			//session.setAttribute("oUser", oUser);
-			session.setAttribute("id", oUser.get().getUserId());
+			session.setAttribute("id", oUser.get().getUserNoPk());
 			
 			if (!(oUser.get().getUserType()).equals("2")) session.setAttribute("LOGIN_MEMBER_ID", "USER");
 			else session.setAttribute("LOGIN_MEMBER_ID", "ADMIN");
@@ -92,7 +92,7 @@ public class LoginController {
 			
 			// 세션에 로그인 회원 정보 보관 
 			//session.setAttribute("oUser", oUser);
-			session.setAttribute("id", oUser.get().getUserId());
+			session.setAttribute("id", oUser.get().getUserNoPk());
 			session.setAttribute("LOGIN_MEMBER_ID", "USER");
 
 			

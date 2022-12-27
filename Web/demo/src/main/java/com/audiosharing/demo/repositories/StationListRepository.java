@@ -6,11 +6,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.audiosharing.demo.models.entities.StationList;
+import com.audiosharing.demo.models.entities.Station;
 
 @Repository
-public interface StationListRepository extends JpaRepository<StationList, Long>{
-	Optional<StationList> findByStnId(Long id);
-	List<StationList> findAllByStnNameContains(String name);
-	List<StationList> findAll();
+public interface StationListRepository extends JpaRepository<Station, Long>{
+	Optional<Station> findByStnId(Long id);
+	List<Station> findAllByStnNameContains(String name);
+	List<Station> findAll();
 }

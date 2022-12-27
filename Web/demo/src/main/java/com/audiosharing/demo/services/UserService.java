@@ -21,7 +21,7 @@ public class UserService {
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
-
+	/*
 	@Transactional(readOnly = true)
 	public Optional<User> findByUserId(Long id) {
 		return userRepository.findByUserId(id);
@@ -31,12 +31,13 @@ public class UserService {
 	public Optional<User> findByUserEmailAndUserPassword(String Email, String password) {
 		return userRepository.findByUserEmailAndUserPassword(Email, password);
 	}
+	*/
 	
 	@Transactional
 	public User save(UserValue value) {
 		User user = User.builder()
 				.userType(value.getUserType())
-				.userEmail(value.getUserEmail())
+				.userMail(value.getUserEmail())
 				.userBirth(value.getUserBirth())
 				.userName(value.getUserName())
 				.userPassword(value.getUserPassword())
@@ -49,13 +50,13 @@ public class UserService {
 
 	@Transactional
 	public int patch(long id, UserValue value) {
-		Optional<User> oUser = userRepository.findByUserId(id);
+		Optional<User> oUser = userRepository.findByUserNoPk(id);
 		if(oUser.isPresent()) {
 			User user = oUser.get();
 			if(StringUtils.isNotBlank(value.getUserType()))
 				user.setUserType(value.getUserType());
 			if(StringUtils.isNotBlank(value.getUserEmail()))
-				user.setUserEmail(value.getUserEmail());
+				user.setUserMail(value.getUserEmail());
 			if(StringUtils.isNotBlank(value.getUserBirth()))
 				user.setUserBirth(value.getUserBirth());
 			if(StringUtils.isNotBlank(value.getUserName()))
@@ -71,7 +72,7 @@ public class UserService {
 		}
 		return 0;
 	}
-
+	/*
 	@Transactional
 	public int delete(long id) {
 		Optional<User> oUser = userRepository.findByUserId(id);
@@ -87,4 +88,5 @@ public class UserService {
 		List<User> userList = this.userRepository.findAll();
 		return userList;
 	}
+	*/
 }

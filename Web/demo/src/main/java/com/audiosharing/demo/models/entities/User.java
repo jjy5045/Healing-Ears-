@@ -28,35 +28,38 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter @Setter
 @Entity
-@Table(name = "user")
+@Table(name = "USER_TB")
 @DynamicUpdate
 @DynamicInsert
 public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT(11)")
-	private Long userId;
-
-	@Column(nullable = false, length = 1, columnDefinition = "CHAR(1) DEFAULT '0'")
-	private String userType;
-
-	@Column(nullable = false, unique = true, length = 100)
-	private String userEmail;
-
-	@Column(nullable = false, length = 50)
-	private String userName;
-
-	@Column(nullable = false, length = 1, columnDefinition = "CHAR(1) DEFAULT '1'")
-	private String userSex;
+	private Long userNoPk;
 
 	@Column(nullable = false, length = 6)
 	private String userBirth;
 
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false, length = 50)
+	private String userMail;
+
+	@Column(nullable = false, length = 15)
 	private String userTel;
 
-	@Column(nullable = false, length = 150)
+	@Column(nullable = false, length = 10)
+	private String userName;
+
+	@Column(nullable = false, length = 20)
 	private String userPassword;
+
+	@Column(nullable = false, length = 10)
+	private String userSex;
+	
+	@Column(nullable = false, length = 1, columnDefinition = "CHAR(1) DEFAULT 'N'")
+	private String userDel;
+	
+	@Column(nullable = false, length = 10, columnDefinition = "CHAR(10) DEFAULT 'USER'")
+	private String userType;
 	
 	@Column(nullable = false, length = 10)
 	private String userMusicGenre1;
@@ -67,37 +70,37 @@ public class User implements Serializable {
 	@Column(nullable = false, length = 10)
 	private String userMusicGenre3;
 	
-	
-	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0", length = 1)
-	private boolean userDel;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Date userCreateTimestamp;
+	private Date userCreateDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = true, columnDefinition = "TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP")
-	protected Date userUpdateTimestamp;
+	protected Date userUpdateDate;
 
 	@PrePersist
 	protected void onCreate() {
-		userCreateTimestamp = Timestamp.valueOf(LocalDateTime.now());
+		userCreateDate = Timestamp.valueOf(LocalDateTime.now());
 	}
 
 	@PreUpdate
 	protected void onUpdate() {
-		userUpdateTimestamp = Timestamp.valueOf(LocalDateTime.now());
+		userUpdateDate = Timestamp.valueOf(LocalDateTime.now());
 	}
 	
 	@Builder
-	public User(String userType, String userName, String userEmail, String userSex,
-			String userBirth, String userTel, String userPassword) {
-		this.userType = userType;
-		this.userName = userName;
-		this.userEmail = userEmail;
-		this.userSex = userSex;
+	public User(String userBirth, String userMail, String userTel, String userName,
+			String userPassword, String userSex, String userType, String userMusicGenre1,
+			String userMusicGenre2, String userMusicGenre3) {
 		this.userBirth = userBirth;
-		this.userTel= userTel;
+		this.userMail = userMail;
+		this.userTel = userTel;
+		this.userName = userSex;
 		this.userPassword = userPassword;
+		this.userSex= userSex;
+		this.userMusicGenre1 = userMusicGenre1;
+		this.userMusicGenre1 = userMusicGenre2;
+		this.userMusicGenre1 = userMusicGenre3;
 	}	
 }

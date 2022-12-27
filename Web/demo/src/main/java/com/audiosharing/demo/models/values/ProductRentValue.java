@@ -1,6 +1,6 @@
 package com.audiosharing.demo.models.values;
 
-import com.audiosharing.demo.models.entities.ProductDetail;
+import com.audiosharing.demo.models.entities.Product;
 import com.audiosharing.demo.models.entities.User;
 
 import lombok.Getter;
@@ -17,6 +17,6 @@ public class ProductRentValue {
 	private String rentReviewFit;
 	private String rentReviewBody;
 	private User user;
-	private ProductDetail productDetail;
+	private Product productDetail;
 
 }
