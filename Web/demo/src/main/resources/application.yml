@@ -1,0 +1,37 @@
+spring:
+  profiles:
+    active: local
+  thymeleaf:
+    mode: HTML
+    encoding: UTF-8
+    check-template-location: true
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:3306/webdb?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Seoul"
+    username: web
+    password: passwd   
+    hikari:
+      auto-commit: false
+      connection-test-query: SELECT 1
+      minimum-idle: 10
+      maximum-pool-size: 50
+      transaction-isolation: TRANSACTION_READ_UNCOMMITTED
+      pool-name: pool-AudioSharing
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      hibernate:
+        #dll-auto: true
+        format_sql: true
+    #generate-ddl: false
+    generate-ddl: true
+    open-in-view: false
+  server:
+    servlet:
+      session:
+        tracking-modes: cookie
+        cookie.name: TESTSSESSTION
+  
