@@ -65,7 +65,6 @@ public class Review implements Serializable {
 	@Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date reviewCreateDate;
 	
-	
 	@PrePersist
 	protected void onCreate() {
 		reviewCreateDate = Timestamp.valueOf(LocalDateTime.now());
