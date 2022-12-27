@@ -83,7 +83,7 @@ public class Rent implements Serializable {
 		rentStartDate = Timestamp.valueOf(LocalDateTime.now());
 	}
 
-
+	// 테스트
 
 	@Builder
 	public Rent(String rentPayment, User user, Product product, Review review) {
