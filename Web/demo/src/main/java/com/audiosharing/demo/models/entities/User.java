@@ -88,7 +88,7 @@ public class User implements Serializable {
 	protected void onUpdate() {
 		userUpdateDate = Timestamp.valueOf(LocalDateTime.now());
 	}
-	
+	//asdasd
 	@Builder
 	public User(String userBirth, String userMail, String userTel, String userName,
 			String userPassword, String userSex, String userType, String userMusicGenre1,
