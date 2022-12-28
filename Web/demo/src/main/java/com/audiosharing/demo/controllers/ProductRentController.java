@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.audiosharing.demo.models.values.ProductRentValue;
+import com.audiosharing.demo.models.values.RentValue;
 import com.audiosharing.demo.services.ProductRentService;
 import com.audiosharing.demo.services.UserService;
 import com.audiosharing.demo.models.entities.Product;
@@ -45,7 +45,7 @@ public class ProductRentController {
 	}
 
 	@PostMapping("/rent")
-	public Map<String, Object> Rent(@RequestBody ProductRentValue value) {
+	public Map<String, Object> Rent(@RequestBody RentValue value) {
 		Map<String, Object> response = new HashMap<>();
 
 		Optional<Product> oProductDetail = productDetailService
@@ -82,7 +82,7 @@ public class ProductRentController {
 	}
 
 	@PostMapping("/finish")
-	public Map<String, Object> RentFinish(@RequestBody ProductRentValue value) {
+	public Map<String, Object> RentFinish(@RequestBody RentValue value) {
 		Map<String, Object> response = new HashMap<>();
 
 		Optional<Product> oProductDetail = productDetailService

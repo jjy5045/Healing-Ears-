@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.audiosharing.demo.models.entities.Product;
 import com.audiosharing.demo.models.entities.ProductList;
 import com.audiosharing.demo.models.entities.Rent;
-import com.audiosharing.demo.models.values.ProductDetailValue;
+import com.audiosharing.demo.models.values.ProductValue;
 import com.audiosharing.demo.models.values.ProductListValue;
-import com.audiosharing.demo.models.values.ProductRentValue;
+import com.audiosharing.demo.models.values.RentValue;
 import com.audiosharing.demo.repositories.ProductDetailRepository;
 import com.audiosharing.demo.repositories.ProductListRepository;
 
@@ -76,7 +76,7 @@ public class ProductDetailService {
 	
 	
 	@Transactional
-	public int patch(long id, ProductDetailValue value) {
+	public int patch(long id, Product value) {
 		Optional<Product> oProductDetail = productDetailRepository.findByProDetailId(id);
 		if(oProductDetail.isPresent()) {
 			Product productDetail = oProductDetail.get();
@@ -94,7 +94,7 @@ public class ProductDetailService {
 	
 	
 	@Transactional
-	public Product save(ProductDetailValue value) {
+	public Product save(Product value) {
 		//long a = value.getProListId();
 		//if(productListRepository.findByProListId(value.getProListId())) 
 		/*

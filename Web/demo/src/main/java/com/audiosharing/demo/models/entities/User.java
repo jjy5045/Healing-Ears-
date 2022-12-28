@@ -88,7 +88,9 @@ public class User implements Serializable {
 	protected void onUpdate() {
 		userUpdateDate = Timestamp.valueOf(LocalDateTime.now());
 	}
-	//asdasd
+	
+	// 생성자 단축키 alt + shift + s, o
+	
 	@Builder
 	public User(String userBirth, String userMail, String userTel, String userName,
 			String userPassword, String userSex, String userType, String userMusicGenre1,

@@ -37,8 +37,8 @@ public class Review implements Serializable {
 	private Long reviewNoPk;
 	
 	// 리뷰 용도
-	@Column(nullable = false, columnDefinition = "TINYINT(1)", length = 1)
-	private Integer reviewPurpose;
+	@Column(nullable = false, length = 10)
+	private String reviewPurpose;
 	
 	// 리뷰 사운드
 	@Column(nullable = false, columnDefinition = "TINYINT(1)", length = 1)
@@ -68,6 +68,16 @@ public class Review implements Serializable {
 	@PrePersist
 	protected void onCreate() {
 		reviewCreateDate = Timestamp.valueOf(LocalDateTime.now());
+	}
+
+	public Review(String reviewPurpose, Integer reviewSound, Integer reviewFit, Integer reviewDesign,
+			Integer reviewIsolating, String reviewDetail) {
+		this.reviewPurpose = reviewPurpose;
+		this.reviewSound = reviewSound;
+		this.reviewFit = reviewFit;
+		this.reviewDesign = reviewDesign;
+		this.reviewIsolating = reviewIsolating;
+		this.reviewDetail = reviewDetail;
 	}
 	
 	

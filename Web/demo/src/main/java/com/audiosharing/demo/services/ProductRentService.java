@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.audiosharing.demo.models.entities.Product;
 import com.audiosharing.demo.models.entities.Rent;
-import com.audiosharing.demo.models.values.ProductRentValue;
+import com.audiosharing.demo.models.values.RentValue;
 import com.audiosharing.demo.repositories.ProductRentRepository;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class ProductRentService {
 	}
 
 	@Transactional
-	public Rent save(ProductRentValue value) {
+	public Rent save(RentValue value) {
 		Rent productRent = Rent.builder().user(value.getUser()).productDetail(value.getProductDetail())
 				//.rentTime(value.getRentTime()).rentPayment(value.getRentPayment())
 				//.rentAdditionalPayment(value.getRentAdditionalPayment()).rentReviewFit(value.getRentReviewFit())

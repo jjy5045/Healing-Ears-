@@ -14,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -75,7 +74,6 @@ public class Rent implements Serializable {
 	@JoinColumn(name="reviewNoPk")
 	private Review review;
 	
-	//asdasdasdasd
 
 	
 	@PrePersist
@@ -83,14 +81,17 @@ public class Rent implements Serializable {
 		rentStartDate = Timestamp.valueOf(LocalDateTime.now());
 	}
 
-	// 테스트
 
 	@Builder
-	public Rent(String rentPayment, User user, Product product, Review review) {
-
+	public Rent(Date rentEndDate, String rentPrice, String rentDidPay, User user,
+			Product product, Review review) {
+		this.rentEndDate = rentEndDate;
+		this.rentPrice = rentPrice;
+		this.rentDidPay = rentDidPay;
 		this.user = user;
 		this.product = product;
 		this.review = review;
 	}
+
 
 }

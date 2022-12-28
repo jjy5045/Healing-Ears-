@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.audiosharing.demo.models.entities.Product;
 import com.audiosharing.demo.models.entities.ProductList;
 import com.audiosharing.demo.models.entities.User;
-import com.audiosharing.demo.models.values.ProductDetailValue;
+import com.audiosharing.demo.models.values.ProductValue;
 import com.audiosharing.demo.models.values.ProductListValue;
 import com.audiosharing.demo.models.values.UserValue;
 import com.audiosharing.demo.repositories.ProductDetailRepository;

@@ -5,16 +5,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class StationListValue {
-	private String stnName;
-	private String stnLatitude;
-	private String stnLongitude;
-	private String stnSido;
-	private String stnSigungu;
-	private String stnEubmyendong;
-	private String stnAdressNum;
-	private String stnAdressLaod;
-	private String stnImageName;
-	private String stnImageRealname;
-	private String stnImagePath;
+public class StationValue {
+	private Long stationNoPk;
+	private String stationQr;
+	private String stationName;
+	private String stationLatitude;
+	private String stationLongitude;
+	private String stationSido;
+	private String stationSigungu;
+	private String stationEubmyendong;
+	private String stationAdressNum;
+	private String stationAdressLaod;
+	
+	private String stationServerIp;
+	private String stationCreateDate;
+	
+	private String stationImageName;
+	private String stationImageRealname;
+	private String stationImagePath;
 }

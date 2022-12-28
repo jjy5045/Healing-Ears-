@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.audiosharing.demo.models.entities.Product;
-import com.audiosharing.demo.models.values.ProductDetailValue;
+import com.audiosharing.demo.models.values.ProductValue;
 import com.audiosharing.demo.repositories.ProductListRepository;
 import com.audiosharing.demo.services.ProductDetailService;
 import com.audiosharing.demo.services.ProductListService;
@@ -84,7 +84,7 @@ public class ProductDetailController {
 	}
 	
 	@PostMapping("")
-	public Map<String, Object> save(@RequestBody ProductDetailValue value) {
+	public Map<String, Object> save(@RequestBody Product value) {
 		Map<String, Object> response = new HashMap<>();
 
 		Product productDetail = productDetailService.save(value);

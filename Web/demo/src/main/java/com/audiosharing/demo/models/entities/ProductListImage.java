@@ -1,8 +1,8 @@
 package com.audiosharing.demo.models.entities;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -27,45 +27,45 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
-@Setter
+@Getter @Setter
 @Entity
-@Table(name = "STATION_DOCK_TB")
+@Table(name = "PRODUCT_LIST_IMAGE_TB")
 @DynamicUpdate
 @DynamicInsert
-public class StationDock implements Serializable{
+
+public class ProductListImage implements Serializable {
+	// 이미지 파일 번호
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT(11)")
-	private Long stationDockNoPk;
+	private Long productListImageNoPk;
 
-	// 스테이션 독 이름
-	@Column(nullable = false, length = 45)
-	private String stationDockName;
+	// 이미지 파일 이름
+	@Column(nullable = false, length = 100)
+	private String productListImageName;
 	
-	// 스테이션 독 QR
+	// 이미지 파일 원본 이름
+	@Column(nullable = false, length = 100)
+	private String productListImageRealName;
+
+	// 이미지 파일 저장 경로
 	@Column(nullable = false, length = 200)
-	private String stationDockQr;
-	//asdasd
+	private String productListImagePath;
 
-	//스테이션 번호
+	// 제품 종류 번호
 	@ManyToOne
-	@JoinColumn(name="stationNoPk")
-    private Station station;
-	
-	//제품 번호
-	@OneToOne
-	@JoinColumn(name="productNoPk", unique=true)
-	private Product product;
+	@JoinColumn(name="productListNoPk")
+	private ProductList productList;
 
-	public StationDock(Long stationDockNoPk, String stationDockName, String stationDockQr, Station station,
-			Product product) {
-		this.stationDockName = stationDockName;
-		this.stationDockQr = stationDockQr;
-		this.station = station;
-		this.product = product;
+	public ProductListImage(String productListImageName, String productListImageRealName,
+			String productListImagePath, ProductList productList) {
+		this.productListImageName = productListImageName;
+		this.productListImageRealName = productListImageRealName;
+		this.productListImagePath = productListImagePath;
+		this.productList = productList;
 	}
 	
 	

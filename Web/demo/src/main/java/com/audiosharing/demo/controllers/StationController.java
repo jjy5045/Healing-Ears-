@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.audiosharing.demo.models.entities.Station;
-import com.audiosharing.demo.models.values.StationListValue;
+import com.audiosharing.demo.models.values.StationValue;
 import com.audiosharing.demo.services.StationListService;
 import com.audiosharing.demo.util.LoginType;
 
@@ -73,7 +73,7 @@ public class StationController {
 	}
 	
 	@PostMapping("")
-	public Map<String, Object> save(@RequestBody StationListValue value) {
+	public Map<String, Object> save(@RequestBody StationValue value) {
 		Map<String, Object> response = new HashMap<>();
 
 		Station station = stationListSerivce.save(value);

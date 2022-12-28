@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.audiosharing.demo.models.entities.Station;
 import com.audiosharing.demo.models.entities.User;
-import com.audiosharing.demo.models.values.StationListValue;
+import com.audiosharing.demo.models.values.StationValue;
 import com.audiosharing.demo.repositories.StationListRepository;
 
 @Service
@@ -28,7 +28,7 @@ public class StationListService {
 	}
 	
 	@Transactional
-	public Station save(StationListValue value) {
+	public Station save(StationValue value) {
 		Station stationList = Station.builder()
 				.stnName(value.getStnName())
 				.stnLatitude(value.getStnLatitude())

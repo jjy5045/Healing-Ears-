@@ -52,32 +52,33 @@ public class Product implements Serializable {
 	@Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date productCreateDate;
 	
-	//제품 예약 확인
+	//제품 개별 상태
 	@Column(nullable = false, columnDefinition = "CHAR(10) DEFAULT 'available'")
 	private String productState;
 	
 	//제품 목록 번호
 	@ManyToOne
-	@JoinColumn(name="productListId")
+	@JoinColumn(name="productListNoPk")
     private ProductList productList;
 	
+	/*
 	//스테이션 번호
 	@OneToOne
-	@JoinColumn(name="stnId")
-	private Station stationList;
-	
+	@JoinColumn(name="stnNoPk")
+	private Station station;
+	*/
 	@PrePersist
 	protected void onCreate() {
 		productCreateDate = Timestamp.valueOf(LocalDateTime.now());
 	}
 	
 	@Builder
-	public Product(String productNoPk, String productSerialNumber, ProductList productList,
-			Station stationList) {
+	public Product(String productSerialNumber, ProductList productList,
+			Station station) {
 		
 		this.productSerialNumber = productSerialNumber;
 		this.productList = productList;
-		this.stationList = stationList;
+		//this.station = station;
 	}
 
 }

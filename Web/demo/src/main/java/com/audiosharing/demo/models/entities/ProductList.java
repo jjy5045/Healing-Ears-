@@ -101,7 +101,6 @@ public class ProductList implements Serializable {
 		this.productListInfoBody= productListInfoBody;
 		this.productListPrice = productListPrice;
 		this.productListRentPrice = productListRentPrice;
-		//this.productDetails = productDetails;
 	}
 	/*
 	@OneToMany(mappedBy = "productList")

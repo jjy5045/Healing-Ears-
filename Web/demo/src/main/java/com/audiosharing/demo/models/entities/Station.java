@@ -37,7 +37,7 @@ public class Station implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT(11)")
-	private Long stationId;
+	private Long stationNoPk;
 
 	// 스테이션 이름
 	@Column(nullable = false, length = 45)
