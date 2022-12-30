@@ -90,6 +90,7 @@ public class User implements Serializable {
 	}
 	
 	// 생성자 단축키 alt + shift + s, o
+	// 커밋 테스트
 	
 	@Builder
 	public User(String userBirth, String userMail, String userTel, String userName,
