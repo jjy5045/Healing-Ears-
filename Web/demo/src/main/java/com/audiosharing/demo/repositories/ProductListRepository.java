@@ -9,6 +9,6 @@ import com.audiosharing.demo.models.entities.ProductList;
 
 @Repository
 public interface ProductListRepository extends JpaRepository<ProductList, Long>{
-	Optional<ProductList> findByProListId(Long id);
+	Optional<ProductList> findByProductListNoPk(Long productListNoPk);
 	List<ProductList> findAll();
 }

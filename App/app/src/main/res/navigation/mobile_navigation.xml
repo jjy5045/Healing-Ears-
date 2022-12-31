@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_my_info">
+
+    <fragment
+        android:id="@+id/nav_my_info"
+        android:name="com.project.healingEars.activity.ui.myInfo.MyInfoFragment"
+        android:label="내 정보"
+        tools:layout="@layout/fragment_myinfo" >
+        <action
+            android:id="@+id/action_nav_my_info_to_nav_login_my_info"
+            app:destination="@id/nav_login_my_info"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_nav_my_info_to_nav_sign_up"
+            app:destination="@id/nav_sign_up"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_nav_my_info_to_nav_admin"
+            app:destination="@id/nav_admin" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_station"
+        android:name="com.project.healingEars.activity.ui.station.StationFragment"
+        android:label="스테이션"
+        tools:layout="@layout/fragment_station" >
+        <action
+            android:id="@+id/action_nav_station_to_nav_station_info"
+            app:destination="@id/nav_station_info" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_product"
+        android:name="com.project.healingEars.activity.ui.product.ProductFragment"
+        android:label="제품목록"
+        tools:layout="@layout/fragment_product" />
+
+    <fragment
+        android:id="@+id/nav_introduce"
+        android:name="com.project.healingEars.activity.ui.introduce.IntroduceFragment"
+        android:label="힐링이어 소개"
+        tools:layout="@layout/fragment_introduce" />
+
+    <fragment
+        android:id="@+id/nav_sign_up"
+        android:name="com.project.healingEars.activity.ui.myInfo.SignUpChildFragment"
+        android:label="회원가입"
+        tools:layout="@layout/fragment_sign_up_child" />
+
+    <fragment
+        android:id="@+id/nav_login_my_info"
+        android:name="com.project.healingEars.activity.ui.myInfo.LoginMyInfoChildFragment"
+        android:label="내 정보"
+        tools:layout="@layout/fragment_login_my_info_child" />
+
+    <fragment
+        android:id="@+id/nav_announce"
+        android:name="com.project.healingEars.activity.ui.announce.AnnounceFragment"
+        android:label="공지사항"
+        tools:layout="@layout/fragment_announce" />
+
+    <fragment
+        android:id="@+id/nav_board"
+        android:name="com.project.healingEars.activity.ui.Board.BoardFragment"
+        android:label="게시판"
+        tools:layout="@layout/fragment_board" />
+
+    <fragment
+        android:id="@+id/nav_station_info"
+        android:name="com.project.healingEars.activity.ui.station.StationInfoFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_station_info">
+        <argument
+            android:name="stn_Id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_admin"
+        android:name="com.project.healingEars.activity.ui.admin.AdminFragment"
+        android:label="관리자 페이지"
+        tools:layout="@layout/fragment_admin" />
+
+</navigation>

@@ -9,10 +9,14 @@ import org.springframework.stereotype.Repository;
 import com.audiosharing.demo.models.entities.Product;
 
 @Repository
-public interface ProductDetailRepository extends JpaRepository<Product, Long>{
+public interface ProductRepository extends JpaRepository<Product, Long>{
+	Optional<Product> findByProductNoPk(Long productNoPk);
+	List<Product> findAll();
+	
+	/*
 	Optional<Product> findByProDetailId(Long id);
 	List<Product> findAll();
 	List<Product> findByStationListStnId(Long id);
-	
+	*/
 
 }

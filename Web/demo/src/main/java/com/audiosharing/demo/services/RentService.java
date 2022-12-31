@@ -10,39 +10,39 @@ import org.springframework.transaction.annotation.Transactional;
 import com.audiosharing.demo.models.entities.Product;
 import com.audiosharing.demo.models.entities.Rent;
 import com.audiosharing.demo.models.values.RentValue;
-import com.audiosharing.demo.repositories.ProductRentRepository;
+import com.audiosharing.demo.repositories.RentRepository;
 
 import java.util.List;
 
 @Service
-public class ProductRentService {
-	private final ProductRentRepository productRentRepository;
+public class RentService {
+	private final RentRepository rentRepository;
 
 	@Autowired
-	public ProductRentService(ProductRentRepository productRentRepository) {
-		this.productRentRepository = productRentRepository;
+	public RentService(RentRepository rentRepository) {
+		this.rentRepository = rentRepository;
 	}
 	
-	public Optional<Rent> findByRentId(Long id) {
-		return productRentRepository.findByRentId(id);
+	public Optional<Rent> findByRentNoPk(Long rentNoPk) {
+		return rentRepository.findByRentNoPk(rentNoPk);
 	}
 
 	@Transactional
 	public List<Rent> findAll() {
-		List<Rent> ProductRentList = this.productRentRepository.findAll();
-		return ProductRentList;
+		List<Rent> RentList = this.rentRepository.findAll();
+		return RentList;
 	}
 
 	@Transactional
 	public Rent save(RentValue value) {
-		Rent productRent = Rent.builder().user(value.getUser()).productDetail(value.getProductDetail())
+		Rent rent = Rent.builder().user(value.getUser()).product(value.getProduct())
 				//.rentTime(value.getRentTime()).rentPayment(value.getRentPayment())
 				//.rentAdditionalPayment(value.getRentAdditionalPayment()).rentReviewFit(value.getRentReviewFit())
 				//.rentReviewDesign(value.getRentReviewDesign()).rentReviewSound(value.getRentReviewSound())
 				//.rentReviewBody(value.getRentReviewBody())
 				.build();
 
-		return productRentRepository.save(productRent);
+		return rentRepository.save(rent);
 	}
 	
 	/*

@@ -1,0 +1,46 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="VmShareViewModel"
+            type="com.project.healingEars.activity.ui.VmShareViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.project.healingEars.activity.ui.myInfo.MyInfoFragment">
+
+        <LinearLayout
+            android:id="@+id/fragment_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_home1"
+                android:name="com.project.healingEars.activity.ui.myInfo.LoginChildFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+            </androidx.fragment.app.FragmentContainerView>
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_home2"
+                android:name="com.project.healingEars.activity.ui.myInfo.LoginMyInfoChildFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+            </androidx.fragment.app.FragmentContainerView>
+        </LinearLayout>
+
+        <!--
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_home_login"/>
+        -->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

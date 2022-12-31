@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.audiosharing.demo.models.values.RentValue;
-import com.audiosharing.demo.services.ProductRentService;
+import com.audiosharing.demo.services.RentService;
 import com.audiosharing.demo.services.UserService;
 import com.audiosharing.demo.models.entities.Product;
 import com.audiosharing.demo.models.entities.Rent;
-import com.audiosharing.demo.services.ProductDetailService;
+import com.audiosharing.demo.services.ProductService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,8 +25,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping(value = "/productRent", produces = { MediaType.APPLICATION_JSON_VALUE })
 @RestController
 public class ProductRentController {
-	private final ProductRentService productRentService;
-	private final ProductDetailService productDetailService;
+	private final RentService productRentService;
+	private final ProductService productDetailService;
 
 	@GetMapping("/all")
 	public Map<String, Object> findAll() {

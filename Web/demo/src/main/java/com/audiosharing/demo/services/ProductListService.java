@@ -13,7 +13,7 @@ import com.audiosharing.demo.models.entities.User;
 import com.audiosharing.demo.models.values.ProductValue;
 import com.audiosharing.demo.models.values.ProductListValue;
 import com.audiosharing.demo.models.values.UserValue;
-import com.audiosharing.demo.repositories.ProductDetailRepository;
+import com.audiosharing.demo.repositories.ProductRepository;
 import com.audiosharing.demo.repositories.ProductListRepository;
 
 import java.util.List;
@@ -28,8 +28,8 @@ public class ProductListService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Optional<ProductList> findByProListId(Long id) {
-		return productListRepository.findByProListId(id);
+	public Optional<ProductList> findByProListId(Long productListNoPk) {
+		return productListRepository.findByProductListNoPk(productListNoPk);
 	}
 	
 	@Transactional
@@ -42,15 +42,15 @@ public class ProductListService {
 	public ProductList save(ProductListValue value) {
 		
 		ProductList productList = ProductList.builder()
-				.proListName(value.getProListName())
-				.proListCategory(value.getProListCategory())
-				.proListLine(value.getProListLine())
-				.proListType(value.getProListType())
-				.proListWearingType(value.getProListWearingType())
-				.proListCompany(value.getProListCompany())
-				.proListText(value.getProListText())
-				.proListRentPrice(value.getProListRentPrice())
-				.proListPrice(value.getProListPrice()).build();
+				.productListName(value.getProductListName())
+				.productListCategory(value.getProductListCategory())
+				.productListLine(value.getProductListLine())
+				.productListType(value.getProductListType())
+				.productListWearingType(value.getProductListWearingType())
+				.productListCompany(value.getProductListCompany())
+				.productListText(value.getProductListInfoBody())
+				.productListRentPrice(value.getProductListRentPrice())
+				.productListPrice(value.getProductListPrice()).build();
 
 		return productListRepository.save(productList);
 	}

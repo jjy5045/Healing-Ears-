@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.audiosharing.demo.models.entities.Station;
 import com.audiosharing.demo.models.values.StationValue;
-import com.audiosharing.demo.services.StationListService;
+import com.audiosharing.demo.services.StationService;
 import com.audiosharing.demo.util.LoginType;
 
 import lombok.RequiredArgsConstructor;
@@ -31,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 public class StationController {
 	
-	private final StationListService stationListSerivce;
+	private final StationService stationListSerivce;
 	
 	@GetMapping("/{id}")
 	public Map<String, Object> findByStnId(@PathVariable("id") long id) {

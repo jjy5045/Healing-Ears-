@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.audiosharing.demo.models.entities.Product;
 import com.audiosharing.demo.models.values.ProductValue;
 import com.audiosharing.demo.repositories.ProductListRepository;
-import com.audiosharing.demo.services.ProductDetailService;
+import com.audiosharing.demo.services.ProductService;
 import com.audiosharing.demo.services.ProductListService;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -32,7 +32,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping(value = "/productDetail", produces = { MediaType.APPLICATION_JSON_VALUE })
 @RestController
 public class ProductDetailController {
-	private final ProductDetailService productDetailService;
+	private final ProductService productDetailService;
 	private final ProductListService productListService;
 	private final ObjectMapper mapper;
 	

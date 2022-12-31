@@ -1,0 +1,23 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="VmShareViewModel"
+            type="com.project.healingEars.activity.ui.VmShareViewModel" />
+    </data>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.project.healingEars.activity.ui.introduce.IntroduceFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="힐링이어입니다."
+        android:gravity="center"/>
+
+
+</LinearLayout>
+</layout>

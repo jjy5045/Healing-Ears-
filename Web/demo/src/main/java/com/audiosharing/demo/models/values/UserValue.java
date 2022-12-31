@@ -15,6 +15,7 @@ public class UserValue {
 	private String userSex;
 	private String userDel;
 	private String userUpdateDate;
+	private String userType;
 	private String userMusicGenre1;
 	private String userMusicGenre2;
 	private String userMusicGenre3;

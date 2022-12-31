@@ -52,6 +52,10 @@ public class Product implements Serializable {
 	@Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date productCreateDate;
 	
+	//제품 개별 색상
+	@Column(nullable = false, length = 50)
+	private String productColor;
+	
 	//제품 개별 상태
 	@Column(nullable = false, columnDefinition = "CHAR(10) DEFAULT 'available'")
 	private String productState;
@@ -73,10 +77,11 @@ public class Product implements Serializable {
 	}
 	
 	@Builder
-	public Product(String productSerialNumber, ProductList productList,
+	public Product(String productSerialNumber, String productColor, ProductList productList,
 			Station station) {
-		
+		 
 		this.productSerialNumber = productSerialNumber;
+		this.productColor = productColor;
 		this.productList = productList;
 		//this.station = station;
 	}

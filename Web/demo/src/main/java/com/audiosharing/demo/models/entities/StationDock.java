@@ -60,6 +60,7 @@ public class StationDock implements Serializable{
 	@JoinColumn(name="productNoPk", unique=true)
 	private Product product;
 
+	@Builder
 	public StationDock(Long stationDockNoPk, String stationDockName, String stationDockQr, Station station,
 			Product product) {
 		this.stationDockName = stationDockName;

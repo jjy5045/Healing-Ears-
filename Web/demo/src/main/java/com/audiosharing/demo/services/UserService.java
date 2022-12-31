@@ -36,13 +36,18 @@ public class UserService {
 	@Transactional
 	public User save(UserValue value) {
 		User user = User.builder()
-				.userType(value.getUserType())
-				.userMail(value.getUserEmail())
 				.userBirth(value.getUserBirth())
+				.userMail(value.getUserMail())
+				.userTel(value.getUserTel())
 				.userName(value.getUserName())
 				.userPassword(value.getUserPassword())
-				.userTel(value.getUserTel())
-				.userSex(value.getUserSex()).build();
+				.userSex(value.getUserSex())
+				//.userDel(value.getUserDel())
+				.userType(value.getUserType())
+				.userMusicGenre1(value.getUserMusicGenre1())
+				.userMusicGenre2(value.getUserMusicGenre2())
+				.userMusicGenre3(value.getUserMusicGenre3())
+				.build();
 
 		return userRepository.save(user);
 	}
@@ -53,20 +58,28 @@ public class UserService {
 		Optional<User> oUser = userRepository.findByUserNoPk(id);
 		if(oUser.isPresent()) {
 			User user = oUser.get();
-			if(StringUtils.isNotBlank(value.getUserType()))
-				user.setUserType(value.getUserType());
-			if(StringUtils.isNotBlank(value.getUserEmail()))
-				user.setUserMail(value.getUserEmail());
 			if(StringUtils.isNotBlank(value.getUserBirth()))
 				user.setUserBirth(value.getUserBirth());
+			if(StringUtils.isNotBlank(value.getUserMail()))
+				user.setUserMail(value.getUserMail());
+			if(StringUtils.isNotBlank(value.getUserTel()))
+				user.setUserTel(value.getUserTel());
 			if(StringUtils.isNotBlank(value.getUserName()))
 				user.setUserName(value.getUserName());
 			if(StringUtils.isNotBlank(value.getUserPassword()))
 				user.setUserPassword(value.getUserPassword());
-			if(StringUtils.isNotBlank(value.getUserTel()))
-				user.setUserTel(value.getUserTel());
 			if(StringUtils.isNotBlank(value.getUserSex()))
 				user.setUserSex(value.getUserSex());
+			if(StringUtils.isNotBlank(value.getUserType()))
+				user.setUserType(value.getUserType());
+			if(StringUtils.isNotBlank(value.getUserMusicGenre1()))
+				user.setUserMusicGenre1(value.getUserMusicGenre1());
+			if(StringUtils.isNotBlank(value.getUserMusicGenre2()))
+				user.setUserMusicGenre1(value.getUserMusicGenre2());
+			if(StringUtils.isNotBlank(value.getUserMusicGenre3()))
+				user.setUserMusicGenre1(value.getUserMusicGenre3());
+
+
 			userRepository.save(user);
 			return 1;
 		}

@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.audiosharing.demo.models.entities.Station;
 
 @Repository
-public interface StationListRepository extends JpaRepository<Station, Long>{
-	Optional<Station> findByStnId(Long id);
+public interface StationRepository extends JpaRepository<Station, Long>{
+	Optional<Station> findByStationNoPk(Long stationNoPk);
 	List<Station> findAllByStnNameContains(String name);
 	List<Station> findAll();
 }

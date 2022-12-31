@@ -1,0 +1,68 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="VmShareViewModel"
+            type="com.project.healingEars.activity.ui.VmShareViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:context="com.project.healingEars.activity.ui.myInfo.LoginMyInfoChildFragment">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아항" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{VmShareViewModel.userVO.userName}" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{VmShareViewModel.userVO.userCreateTimestamp.toLocaleString()}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{VmShareViewModel.userVO.userBirth}" />
+
+        <Button
+            android:id="@+id/btn_my_info_child_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout" />
+        <Button
+            android:id="@+id/btn_my_info_child_session"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Session" />
+
+        <Button
+            android:id="@+id/btn_info_child_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="관리자 페이지"
+            android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/text_session"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:text="@{VmShareViewModel.session}" />
+
+
+    </LinearLayout>
+</layout>

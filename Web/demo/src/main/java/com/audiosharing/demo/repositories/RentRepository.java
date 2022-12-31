@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.audiosharing.demo.models.entities.Rent;
 
 @Repository
-public interface ProductRentRepository extends JpaRepository<Rent, Long>{
-	Optional<Rent> findByRentId(Long id);
+public interface RentRepository extends JpaRepository<Rent, Long>{
+	Optional<Rent> findByRentNoPk(Long rentNoPk);
 	List<Rent> findAll();
 	//Optional<ProductRent> findByRentUseCheckAndProDetailId(int useCheck, ProductDetail proDetailID);
 }

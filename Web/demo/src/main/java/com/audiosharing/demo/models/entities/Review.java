@@ -19,6 +19,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -69,7 +70,8 @@ public class Review implements Serializable {
 	protected void onCreate() {
 		reviewCreateDate = Timestamp.valueOf(LocalDateTime.now());
 	}
-
+	
+	@Builder
 	public Review(String reviewPurpose, Integer reviewSound, Integer reviewFit, Integer reviewDesign,
 			Integer reviewIsolating, String reviewDetail) {
 		this.reviewPurpose = reviewPurpose;

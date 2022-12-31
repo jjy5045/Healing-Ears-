@@ -13,59 +13,59 @@ import com.audiosharing.demo.models.entities.Rent;
 import com.audiosharing.demo.models.values.ProductValue;
 import com.audiosharing.demo.models.values.ProductListValue;
 import com.audiosharing.demo.models.values.RentValue;
-import com.audiosharing.demo.repositories.ProductDetailRepository;
+import com.audiosharing.demo.repositories.ProductRepository;
 import com.audiosharing.demo.repositories.ProductListRepository;
 
 import java.util.List;
 
 @Service
-public class ProductDetailService {
-	private final ProductDetailRepository productDetailRepository;
+public class ProductService {
+	private final ProductRepository productRepository;
 	
 	
 	
 	@Autowired
-	public ProductDetailService(ProductDetailRepository productDetailRepository) {
-		this.productDetailRepository = productDetailRepository;
+	public ProductService(ProductRepository productRepository) {
+		this.productRepository = productRepository;
 	}
 	
 	
 	
 	@Transactional(readOnly = true)
-	public Optional<Product> findByProDetailId(Long id) {
-		return productDetailRepository.findByProDetailId(id);
+	public Optional<Product> findByProductNoPk(Long productNoPk) {
+		return productRepository.findByProductNoPk(productNoPk);
 	}
 	
 	@Transactional
-	public List<Product> findByStationId(long id) {
-		List<Product> ProductDetailList = this.productDetailRepository. findByStationListStnId(id);
-		return ProductDetailList;
+	public List<Product> findByStationNoPk(long stationNoPk) {
+		List<Product> ProductList = this.productRepository. findByStationListStnId(stationNoPk);
+		return ProductList;
 	}
 	
 
 	
 	@Transactional
 	public List<Product> findAll() {
-		List<Product> ProductDetailList = this.productDetailRepository.findAll();
-		return ProductDetailList;
+		List<Product> ProductList = this.productRepository.findAll();
+		return ProductList;
 	}
 	
 	
 	@Transactional
-	public void rentBoolean(long id) {
-		Optional<Product> oProductDetail = productDetailRepository.findByProDetailId(id);
-		if(oProductDetail.isPresent()) {
-			Product productDetail = oProductDetail.get();
+	public void rentBoolean(long productNoPk) {
+		Optional<Product> oProduct = productRepository.findByProductNoPk(productNoPk);
+		if(oProduct.isPresent()) {
+			Product product= oProduct.get();
 			
-			if(productDetail.isProDetailRentCheck()==false) {
-				productDetail.setProDetailRentCheck(true);	
-				productDetailRepository.save(productDetail);
+			if(product.isProductRentCheck()==false) {
+				product.setProductRentCheck(true);	
+				productRepository.save(product);
 				return;
 		}
 			
-			if(productDetail.isProDetailRentCheck() == true) {
-				productDetail.setProDetailRentCheck(false);		
-				productDetailRepository.save(productDetail);
+			if(product.isProductRentCheck() == true) {
+				product.setProductRentCheck(false);		
+				productRepository.save(product);
 				return;
 			}
 			
@@ -76,16 +76,16 @@ public class ProductDetailService {
 	
 	
 	@Transactional
-	public int patch(long id, Product value) {
-		Optional<Product> oProductDetail = productDetailRepository.findByProDetailId(id);
-		if(oProductDetail.isPresent()) {
-			Product productDetail = oProductDetail.get();
-			if(StringUtils.isNotBlank(value.getProDetailNumber()))
-				productDetail.setProDetailNumber(value.getProDetailNumber());
-			if(StringUtils.isNotBlank(value.getProDetailQR()))
-				productDetail.setProDetailNumber(value.getProDetailQR());
+	public int patch(long productNoPk, Product value) {
+		Optional<Product> oProduct = productRepository.findByProductNoPk(productNoPk);
+		if(oProduct.isPresent()) {
+			Product product= oProduct.get();
+			if(StringUtils.isNotBlank(value.getProductSerialNumber()))
+				product.setProductSerialNumber(value.getProductSerialNumber());
+			if(StringUtils.isNotBlank(value.getProductColor()))
+				product.setProductColor(value.getProductColor());
 			
-			productDetailRepository.save(productDetail);
+			productRepository.save(product);
 			return 1;
 		}
 		
@@ -111,13 +111,12 @@ public class ProductDetailService {
 		}
 		*/
 		
-		Product productDetail = Product.builder()
-				.stationList(value.getStationList())
-				.productList(value.getProductList())
-				.proDetailNumber(value.getProDetailNumber())
-				.proDetailQR(value.getProDetailQR()).build();
+		Product product = Product.builder()
+				.productSerialNumber(value.getProductSerialNumber())
+				.productColor(value.getProductColor())
+				.build();
 		
-		return productDetailRepository.save(productDetail);
+		return productRepository.save(product);
 		
 	}
 }

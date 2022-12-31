@@ -11,46 +11,46 @@ import org.springframework.transaction.annotation.Transactional;
 import com.audiosharing.demo.models.entities.Station;
 import com.audiosharing.demo.models.entities.User;
 import com.audiosharing.demo.models.values.StationValue;
-import com.audiosharing.demo.repositories.StationListRepository;
+import com.audiosharing.demo.repositories.StationRepository;
 
 @Service
-public class StationListService {
-	private final StationListRepository stationListRepository;
+public class StationService {
+	private final StationRepository stationRepository;
 	
 	@Autowired
-	public StationListService(StationListRepository stationListRepository) {
-		this.stationListRepository = stationListRepository;
+	public StationService(StationRepository stationListRepository) {
+		this.stationRepository = stationListRepository;
 	}
 	
 	@Transactional(readOnly = true)
-	public Optional<Station> findByStnId(Long id) {
-		return stationListRepository.findByStnId(id);
+	public Optional<Station> findByStationId(Long stationNoPk) {
+		return stationRepository.findByStationNoPk(stationNoPk);
 	}
 	
 	@Transactional
 	public Station save(StationValue value) {
-		Station stationList = Station.builder()
-				.stnName(value.getStnName())
-				.stnLatitude(value.getStnLatitude())
-				.stnLongitude(value.getStnLongitude())
-				.stnSido(value.getStnSido())
-				.stnSigungu(value.getStnSigungu())
-				.stnEubmyendong(value.getStnEubmyendong())
-				.stnAdressNum(value.getStnAdressNum())
-				.stnAdressLaod(value.getStnAdressLaod())
-				.stnImageName(value.getStnImageName())
-				.stnImageRealname(value.getStnImageRealname())
-				.stnImagePath(value.getStnImagePath())
+		Station station = Station.builder()
+				.stationName(value.getStationName())
+				.stationLatitude(value.getStationLatitude())
+				.stationLongitude(value.getStationLongitude())
+				.stationSido(value.getStationSido())
+				.stationSigungu(value.getStationSigungu())
+				.stationEubmyendong(value.getStationEubmyendong())
+				.stationAdressNum(value.getStationAdressNum())
+				.stationAdressLaod(value.getStationAdressLaod())
+				.stationImageName(value.getStationImageName())
+				.stationImageRealname(value.getStationImageRealname())
+				.stationImagePath(value.getStationImagePath())
 				.build();
 		
-		return stationListRepository.save(stationList);
+		return stationRepository.save(station);
 	}
 	
 	@Transactional
-	public int delete(long id) {
-		Optional<Station> oStationList = stationListRepository.findByStnId(id);
-		if(oStationList.isPresent()) {
-			stationListRepository.delete(oStationList.get());
+	public int delete(long stationNoPk) {
+		Optional<Station> oStation= stationRepository.findByStationNoPk(stationNoPk);
+		if(oStation.isPresent()) {
+			stationRepository.delete(oStation.get());
 			return 1;
 		}
 		return 0;
@@ -58,8 +58,8 @@ public class StationListService {
 	
 	@Transactional
 	public List<Station> findAll() {
-		List<Station> stationList = this.stationListRepository.findAll();
-		return stationList;
+		List<Station> station = this.stationRepository.findAll();
+		return station;
 	}
 	
 }

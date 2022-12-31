@@ -1,0 +1,65 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="androidx.databinding.ObservableArrayList"/>
+        <variable
+            name="VmShareModel"
+            type="com.project.healingEars.activity.ui.VmShareViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:orientation="horizontal"
+            tools:context="com.project.healingEars.activity.ui.admin.AdminFragment">
+
+            <!-- TODO: Update blank fragment layout -->
+
+            <Button
+                android:id="@+id/btn_admin_station"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="스테이션 관리" />
+
+            <Button
+                android:id="@+id/btn_admin_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="제품 관리" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/admin_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/station_recycler"
+                android:layout_width="409dp"
+                android:layout_height="354dp"
+                android:layout_weight="1"
+                android:scrollbars="vertical"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="1dp"
+                android:visibility="visible"/>
+            <Button
+                android:id="@+id/btn_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="asdasd"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>
