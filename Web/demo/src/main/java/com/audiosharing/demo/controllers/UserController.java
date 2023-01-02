@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -82,22 +83,48 @@ public class UserController {
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
 	*/
+	/*
+	@PostMapping("/login")
+	public ResponseEntity<Map<String, Object>> Login(@RequestBody UserValue value, HttpSession session) {
+		Optional<User> oUser = userService.findByUserMailAndUserPassword(value.getUserMail(), value.getUserPassword());
+		Map<String, Object> response = new HashMap<>();
+		
+		Cookie cookie = new Cookie("memberId", String.valueOf(oUser.get().getUserNoPk()));
+		if (oUser.isPresent()) {
+			response.put("result", "SUCCESS");
+			response.put("user", oUser);
+			
+			session.setAttribute("id", oUser.get().getUserNoPk());
+			session.setAttribute("LOGIN_MEMBER_ID", "USER");
+			
+			
+		} else {
+			response.put("result", "FAIL");
+		} //
+			// return Json
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK).addCookie(cookie);;
+	}
+	*/
 	
 	@PostMapping("/login")
 	public ResponseEntity<Map<String, Object>> Login(@RequestBody UserValue value, HttpSession session) {
 		Optional<User> oUser = userService.findByUserMailAndUserPassword(value.getUserMail(), value.getUserPassword());
 		Map<String, Object> response = new HashMap<>();
 		
+		Cookie cookie = new Cookie("memberId", String.valueOf(oUser.get().getUserNoPk()));
 		if (oUser.isPresent()) {
 			response.put("result", "SUCCESS");
 			response.put("user", oUser);
+			
 			session.setAttribute("id", oUser.get().getUserNoPk());
 			session.setAttribute("LOGIN_MEMBER_ID", "USER");
+			
+			
 		} else {
 			response.put("result", "FAIL");
 		} //
 			// return Json
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	@GetMapping("/info")
