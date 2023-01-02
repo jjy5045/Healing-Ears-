@@ -48,7 +48,7 @@ public class ProductListService {
 				.productListType(value.getProductListType())
 				.productListWearingType(value.getProductListWearingType())
 				.productListCompany(value.getProductListCompany())
-				.productListText(value.getProductListInfoBody())
+				.productListInfoBody(value.getProductListInfoBody())
 				.productListRentPrice(value.getProductListRentPrice())
 				.productListPrice(value.getProductListPrice()).build();
 

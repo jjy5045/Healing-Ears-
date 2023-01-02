@@ -55,10 +55,10 @@ public class User implements Serializable {
 	@Column(nullable = false, length = 10)
 	private String userSex;
 	
-	@Column(nullable = false, length = 1, columnDefinition = "CHAR(1) DEFAULT 'N'")
+	@Column(nullable = true, length = 1, columnDefinition = "CHAR(1) DEFAULT 'N'")
 	private String userDel;
 	
-	@Column(nullable = false, length = 10, columnDefinition = "CHAR(10) DEFAULT 'USER'")
+	@Column(nullable = true, length = 10, columnDefinition = "CHAR(10) DEFAULT 'USER'")
 	private String userType;
 	
 	@Column(nullable = false, length = 10)
@@ -93,17 +93,17 @@ public class User implements Serializable {
 	// 커밋 테스트
 	
 	@Builder
-	public User(String userBirth, String userMail, String userTel, String userName,
-			String userPassword, String userSex, String userType, String userMusicGenre1,
+	public User(String userBirth, String userMail, String userTel, String userName, 
+			String userPassword, String userSex, String userMusicGenre1,
 			String userMusicGenre2, String userMusicGenre3) {
 		this.userBirth = userBirth;
+		this.userName = userName;
 		this.userMail = userMail;
 		this.userTel = userTel;
-		this.userName = userSex;
 		this.userPassword = userPassword;
 		this.userSex= userSex;
 		this.userMusicGenre1 = userMusicGenre1;
-		this.userMusicGenre1 = userMusicGenre2;
-		this.userMusicGenre1 = userMusicGenre3;
+		this.userMusicGenre2 = userMusicGenre2;
+		this.userMusicGenre3 = userMusicGenre3;
 	}	
 }

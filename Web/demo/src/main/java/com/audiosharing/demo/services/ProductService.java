@@ -36,11 +36,13 @@ public class ProductService {
 		return productRepository.findByProductNoPk(productNoPk);
 	}
 	
+	/*
 	@Transactional
 	public List<Product> findByStationNoPk(long stationNoPk) {
-		List<Product> ProductList = this.productRepository. findByStationListStnId(stationNoPk);
+		//List<Product> ProductList = this.productRepository.findByStationNoPk(stationNoPk);
 		return ProductList;
 	}
+	*/
 	
 
 	
@@ -51,6 +53,7 @@ public class ProductService {
 	}
 	
 	
+	/*
 	@Transactional
 	public void rentBoolean(long productNoPk) {
 		Optional<Product> oProduct = productRepository.findByProductNoPk(productNoPk);
@@ -71,8 +74,7 @@ public class ProductService {
 			
 		}
 	}
-	
-	
+	*/
 	
 	
 	@Transactional

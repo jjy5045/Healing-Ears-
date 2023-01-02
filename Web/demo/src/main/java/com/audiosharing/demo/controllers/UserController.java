@@ -56,7 +56,7 @@ public class UserController {
 	 * response.put("user", oUser.get());
 	 * 
 	 * // 세션에 로그인 회원 정보 보관 //session.setAttribute("oUser", oUser);
-	 * session.setAttribute("id", oUser.get().getUserId());
+	 * session.setAttribute("id", oUser.get().getUserNoPk());
 	 * session.setAttribute("LOGIN_MEMBER_ID", "USER"); } else {
 	 * response.put("result", "FAIL"); response.put("reason",
 	 * "일치하는 회원 정보가 없습니다. 입력 정보를 다시 확인하세요."); } //return Json return new
@@ -72,7 +72,7 @@ public class UserController {
 		String result = null;
 		if (oUser.isPresent()) {
 			result = "SUCCESS";
-			session.setAttribute("id", oUser.get().getUserId());
+			session.setAttribute("id", oUser.get().getUserNoPk());
 			session.setAttribute("LOGIN_MEMBER_ID", "USER");
 		} else {
 			result = "FAIL";
@@ -85,7 +85,7 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<Map<String, Object>> Login(@RequestBody UserValue value, HttpSession session) {
-		Optional<User> oUser = userService.findByUserEmailAndUserPassword(value.getUserEmail(), value.getUserPassword());
+		Optional<User> oUser = userService.findByUserMailAndUserPassword(value.getUserMail(), value.getUserPassword());
 		Map<String, Object> response = new HashMap<>();
 		
 		if (oUser.isPresent()) {
@@ -105,8 +105,8 @@ public class UserController {
 	public Map<String, Object> Info(HttpSession session) {
 		Map<String, Object> response = new HashMap<>();
 
-		// response = findByUserId(session.getAttribute("id"));
-		Optional<User> oUser = userService.findByUserId((Long) session.getAttribute("id"));
+		// response = findByUserNoPk(session.getAttribute("id"));
+		Optional<User> oUser = userService.findByUserNoPk((Long) session.getAttribute("id"));
 		oUser.get().setUserPassword(null);
 		response.put("result", "SUCCESS");
 		response.put("user", oUser);
@@ -147,10 +147,10 @@ public class UserController {
 
 	/*
 	 * @GetMapping("/{id}") public Map<String, Object>
-	 * findByUserId(@PathVariable("id") long id) { Map<String, Object> response =
+	 * findByUserNoPk(@PathVariable("id") long id) { Map<String, Object> response =
 	 * new HashMap<>();
 	 * 
-	 * Optional<User> oUser = userService.findByUserId(id); if (oUser.isPresent()) {
+	 * Optional<User> oUser = userService.findByUserNoPk(id); if (oUser.isPresent()) {
 	 * //response.put("result", "SUCCESS"); //response.put("user", oUser.get());
 	 * response.put("userVO", oUser.get()); } else { response.put("result", "FAIL");
 	 * response.put("reason", "일치하는 회원 정보가 없습니다. 사용자 id를 확인해주세요."); }
@@ -161,10 +161,10 @@ public class UserController {
 	//////////////// 성공
 	/*
 	 * @GetMapping("/{id}") public ResponseEntity<String>
-	 * findByUserId(@PathVariable("id") long id) throws JsonProcessingException {
+	 * findByUserNoPk(@PathVariable("id") long id) throws JsonProcessingException {
 	 * Map<String, Object> response = new HashMap<>(); String result = null; //User
-	 * tempUser = userService.findByUserId(id); Optional<User> oUser =
-	 * userService.findByUserId(id); if (oUser.isPresent()) {
+	 * tempUser = userService.findByUserNoPk(id); Optional<User> oUser =
+	 * userService.findByUserNoPk(id); if (oUser.isPresent()) {
 	 * //response.put("result", "SUCCESS"); //response.put("user", oUser.get());
 	 * response.put("userVO", oUser.get()); result =
 	 * mapper.writeValueAsString(oUser.get());
@@ -176,10 +176,10 @@ public class UserController {
 	 */
 
 	@GetMapping("/{id}")
-	public ResponseEntity<String> findByUserId(@PathVariable("id") long id) throws JsonProcessingException {
+	public ResponseEntity<String> findByUserNoPk(@PathVariable("id") long id) throws JsonProcessingException {
 		Map<String, Object> response = new HashMap<>();
-		// User tempUser = userService.findByUserId(id);
-		Optional<User> oUser = userService.findByUserId(id);
+		// User tempUser = userService.findByUserNoPk(id);
+		Optional<User> oUser = userService.findByUserNoPk(id);
 		if (oUser.isPresent()) {
 			response.put("result", "SUCCESS");
 			response.put("user", oUser.get());
@@ -262,6 +262,7 @@ public class UserController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 
+	/*
 	@DeleteMapping("/{id}")
 	public Map<String, Object> delete(@PathVariable("id") long id) {
 		Map<String, Object> response = new HashMap<>();
@@ -275,4 +276,5 @@ public class UserController {
 
 		return response;
 	}
+	*/
 }

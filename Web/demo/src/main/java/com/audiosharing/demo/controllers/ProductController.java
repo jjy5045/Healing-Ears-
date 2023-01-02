@@ -31,11 +31,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping(value = "/productDetail", produces = { MediaType.APPLICATION_JSON_VALUE })
 @RestController
-public class ProductDetailController {
+public class ProductController {
 	private final ProductService productDetailService;
 	private final ProductListService productListService;
 	private final ObjectMapper mapper;
 	
+	
+	/*
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<String> findByProDetailId(@PathVariable("id") long id) throws JsonProcessingException {
@@ -101,4 +103,6 @@ public class ProductDetailController {
 
 		return response;
 	}
+	
+	*/
 }

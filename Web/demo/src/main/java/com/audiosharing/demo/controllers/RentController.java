@@ -24,10 +24,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping(value = "/productRent", produces = { MediaType.APPLICATION_JSON_VALUE })
 @RestController
-public class ProductRentController {
+public class RentController {
 	private final RentService productRentService;
 	private final ProductService productDetailService;
 
+	
+	/*
+	
+	
+	
 	@GetMapping("/all")
 	public Map<String, Object> findAll() {
 		Map<String, Object> response = new HashMap<>();
@@ -142,5 +147,4 @@ public class ProductRentController {
 	 * 
 	 * return response; }
 	 */
-
 }

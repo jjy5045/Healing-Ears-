@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Git_project/App/app/src/main/res/layout/fragment_login_my_info_child.xml" value="0.5026041666666666" />
+        <entry key="..\:/Git_project/App/app/src/main/res/layout/fragment_myinfo.xml" value="0.5026041666666666" />
+        <entry key="..\:/Git_project/App/app/src/main/res/layout/nav_header_home.xml" value="0.5026041666666666" />
         <entry key="..\:/Users/admin/Documents/AudioSharing/App/app/src/main/res/drawable/buttonshapewhitebg.xml" value="0.2065" />
         <entry key="..\:/Users/admin/Documents/AudioSharing/App/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2065" />
         <entry key="..\:/Users/admin/Documents/AudioSharing/App/app/src/main/res/drawable/ic_menu_camera.xml" value="0.2065" />

@@ -75,7 +75,7 @@ public class VmShareViewModel extends ViewModel {
             if ((result.body().result).equals("SUCCESS")) {
                 mText.setValue("로그인성공");
                 userVO.setValue(result.body().user);
-                userNickName.setValue(userVO.getValue().userEmail);
+                userNickName.setValue(userVO.getValue().userMail);
                 loginState.setValue("LOGIN");
             } else if ((result.body().result).equals("FAIL")) {
                 loginState.setValue("FAIL");

@@ -32,12 +32,12 @@ import lombok.RequiredArgsConstructor;
 public class StationController {
 	
 	private final StationService stationListSerivce;
-	
+	/*
 	@GetMapping("/{id}")
-	public Map<String, Object> findByStnId(@PathVariable("id") long id) {
+	public Map<String, Object> findByStationNoPk(@PathVariable("id") long id) {
 		Map<String, Object> response = new HashMap<>();
 		
-		Optional<Station> oStationList = stationListSerivce.findByStnId(id);
+		Optional<Station> oStationList = stationListSerivce.findByStationNoPk(id);
 		if (oStationList.isPresent()) {
 			response.put("result", "SUCCESS");
 			response.put("station", oStationList.get());
@@ -101,4 +101,5 @@ public class StationController {
 
 		return response;
 	}
+	*/
 }

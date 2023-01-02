@@ -43,7 +43,7 @@ public class LoginMyInfoChildFragment extends Fragment {
 
 
         vmShareViewModel.userVO.observe(requireActivity(), userVO -> {
-            if((userVO.userType).equals("2")) binding.btnInfoChildAdmin.setVisibility(View.VISIBLE);
+            if((userVO.userType).equals("ADMIN")) binding.btnInfoChildAdmin.setVisibility(View.VISIBLE);
         });
 
 

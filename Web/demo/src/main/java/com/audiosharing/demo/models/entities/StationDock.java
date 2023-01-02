@@ -48,11 +48,10 @@ public class StationDock implements Serializable{
 	// 스테이션 독 QR
 	@Column(nullable = false, length = 200)
 	private String stationDockQr;
-	//asdasd
 
 	//스테이션 번호
 	@ManyToOne
-	@JoinColumn(name="stationNoPk")
+	@JoinColumn(name="stationNoPk", unique=true)
     private Station station;
 	
 	//제품 번호

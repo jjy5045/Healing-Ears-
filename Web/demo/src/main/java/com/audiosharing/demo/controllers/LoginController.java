@@ -36,6 +36,7 @@ public class LoginController {
 
 	private final UserService userService;
 	
+	
 	/*
 	@PostMapping("")
 	public Map<String, Object> findByUserIdAndUserPassword(@RequestBody Long userID, String UserPassword) {
@@ -55,6 +56,9 @@ public class LoginController {
 	}
 	*/
 	
+	
+	
+	/*
 	@PostMapping("/login")
 	public Map<String, Object> Login(@RequestBody UserValue value, HttpSession session) {
 		Map<String, Object> response = new HashMap<>();
@@ -123,5 +127,7 @@ public class LoginController {
 			return response;
 		}
 	}
+	*/
+	
 	
 }

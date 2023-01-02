@@ -21,17 +21,17 @@ public class UserService {
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
-	/*
+	
 	@Transactional(readOnly = true)
-	public Optional<User> findByUserId(Long id) {
-		return userRepository.findByUserId(id);
+	public Optional<User> findByUserNoPk(Long UserNoPk) {
+		return userRepository.findByUserNoPk(UserNoPk);
 	}
 	
 	@Transactional(readOnly = true)
-	public Optional<User> findByUserEmailAndUserPassword(String Email, String password) {
-		return userRepository.findByUserEmailAndUserPassword(Email, password);
+	public Optional<User> findByUserMailAndUserPassword(String UserMail, String UserPassword) {
+		return userRepository.findByUserMailAndUserPassword(UserMail, UserPassword);
 	}
-	*/
+	
 	
 	@Transactional
 	public User save(UserValue value) {
@@ -42,8 +42,6 @@ public class UserService {
 				.userName(value.getUserName())
 				.userPassword(value.getUserPassword())
 				.userSex(value.getUserSex())
-				//.userDel(value.getUserDel())
-				.userType(value.getUserType())
 				.userMusicGenre1(value.getUserMusicGenre1())
 				.userMusicGenre2(value.getUserMusicGenre2())
 				.userMusicGenre3(value.getUserMusicGenre3())
@@ -70,8 +68,8 @@ public class UserService {
 				user.setUserPassword(value.getUserPassword());
 			if(StringUtils.isNotBlank(value.getUserSex()))
 				user.setUserSex(value.getUserSex());
-			if(StringUtils.isNotBlank(value.getUserType()))
-				user.setUserType(value.getUserType());
+			//if(StringUtils.isNotBlank(value.getUserType()))
+				//user.setUserType(value.getUserType());
 			if(StringUtils.isNotBlank(value.getUserMusicGenre1()))
 				user.setUserMusicGenre1(value.getUserMusicGenre1());
 			if(StringUtils.isNotBlank(value.getUserMusicGenre2()))
@@ -95,11 +93,11 @@ public class UserService {
 		}
 		return 0;
 	}
-	
+	*/
 	@Transactional
 	public List<User> findAll() {
 		List<User> userList = this.userRepository.findAll();
 		return userList;
 	}
-	*/
+	
 }

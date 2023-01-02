@@ -12,7 +12,7 @@ public class ProductListValue {
 	private Long productListNoPk;
 	private String productListName;
 	private String productListCategory;
-	private Boolean productListLine;
+	private String productListLine;
 	private String productListType;
 	private String productListWearingType;
 	private String productListCompany;
